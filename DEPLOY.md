@@ -11,7 +11,35 @@ reimagine-it's own design audit). This doc is the exact runbook.
 | `navigators.com` | 2017 Apache/AlmaLinux box serving "Russ Haynal - Internet Instructor" HTML 3.2 — **this is what we replace** |
 | `www.navigators.com` | Same old box |
 
-## 0. One-time token fix (the only blocker)
+## 0. Deployment — DONE via OAuth (Sep 7, 2026)
+
+The env API token was too narrow (zero zones visible, Pages auth error), so the
+deploy was done with a **wrangler OAuth login** instead (scoped: `pages:write`,
+`zone:read`):
+
+- **Live:** https://navigators-dvr.pages.dev/ (project `navigators`, production branch `main`)
+- Account: Kazim.r.merchant@gmail.com's Account (`56faf9a57ad29af2d943fdedfb5ecda9`)
+- Zone check: `navigatorslab.com` is in this account; **`navigators.com` is not** — it still sits at the old registrar/host and must be attached from the dashboard (or the zone added to this account first)
+
+**The only remaining step is the custom-domain attach** — the OAuth grant
+deliberately excludes `zone:edit`/`dns:write`, so it's a dashboard action:
+
+> Cloudflare dashboard → Workers & Pages → `navigators` → Custom domains →
+> Set up a custom domain → `navigators.com`. If the zone isn't in this account
+> yet, **Add a site → navigators.com** first (Cloudflare scans and imports the
+> existing DNS), then change the nameservers at the registrar. Pages validates
+> the domain and serves it with a certificate automatically.
+
+Redeploy after any edit to `index.html`:
+
+```bash
+env -u CLOUDFLARE_API_TOKEN -u CLOUDFLARE_ACCOUNT_ID \
+  npx wrangler pages deploy . --project-name navigators --branch main
+```
+
+---
+
+### Alternative path (API token), for the record
 
 The `CLOUDFLARE_API_TOKEN` in the environment is **valid but too narrow** — it
 authenticates yet returns zero zones, zero accounts, and an authentication
