@@ -1,5 +1,7 @@
 name = "reimagine-lab"
+main = "index.js"
 compatibility_date = "2026-09-01"
 
-[assets]
-directory = "./public"
+# No [assets] — this worker proxies the reimagine-it GitHub Pages origin.
+# Zone routes on navigatorslab.com point /reimagine and /reimagine/* here,
+# which is how the playground lives on the main site without a new subdomain.

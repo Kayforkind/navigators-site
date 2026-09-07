@@ -1,46 +1,58 @@
-# Deploying the lab landing (reimagine.navigatorslab.com)
+# Deploying reimagine on navigatorslab.com — runbook
 
 Status as of Sep 7, 2026 — measured, not aspirational.
 
+**Decision (Sep 7):** reimagine lives **on the main site** as a path —
+`https://navigatorslab.com/reimagine/` — exactly like `/tools/`. No new
+subdomain, no DNS records needed at all. The earlier subdomain plan
+(`reimagine.navigatorslab.com`) is retired; its Pages-domain attach was
+never validated and is inert (delete it in the dashboard whenever).
+
 | Surface | State |
 |---|---|
-| Pages project `navigators` | live at https://navigators-dvr.pages.dev/ (origin of record) |
-| Worker `reimagine-lab` (assets mirror) | live at https://reimagine-lab.kazim-r-merchant.workers.dev/ |
-| `reimagine.navigatorslab.com` | attached to the Pages project, **pending CNAME** |
+| `navigatorslab.com/reimagine/` | **live** — worker `reimagine-lab` proxies the reimagine-it GitHub Pages origin |
+| `/reimagine` (no slash) and `/Reimagine` | 301 → `/reimagine/` (case-insensitive match on the first segment) |
+| Pages project `navigators` | still live at https://navigators-dvr.pages.dev/ (origin of record for the landing page) |
+| Stale `reimagine.navigatorslab.com` attach | inert — dashboard-only cleanup |
 
-## The one remaining step (owner, 30 seconds)
+## How it works
 
-Cloudflare dashboard → navigatorslab.com → DNS → Records → **Add record**:
-
-    Type:   CNAME
-    Name:   reimagine
-    Target: navigators-dvr.pages.dev
-    Proxy:  ON (orange cloud)
-
-The Pages domain then validates automatically and the certificate is issued
-(1–5 min). The site is **public** — the earlier "locked to owner" plan was
-dropped by decision (Sep 7): the audience flows from GitHub (README quick-nav
-row + docs footer funnel link) to this page.
-
-## Why the CNAME could not be automated
-
-Every Cloudflare credential available locally is Pages/Workers/AI-scoped:
-wrangler's OAuth catalog has no DNS scope at all (`zone:read` only), and the
-vault tokens are Pages/AI-scoped. Workers custom-domain attach (which would
-auto-create DNS) is API-token-only (`10405: Method not allowed for this
-authentication scheme` under OAuth). A token with **Zone · DNS · Edit**
-(navigatorslab.com) would let future deploys add records programmatically.
+Two zone routes on the already-proxied `navigatorslab.com` hostname send
+`/reimagine*` and `/Reimagine*` to the `reimagine-lab` worker, which
+proxies `https://kayforkind.github.io/reimagine-it/…` (path joined
+manually, mount prefix stripped, redirect Location rewritten back under
+`/reimagine`). Zone routes need **no DNS changes** — the hostname is
+already proxied. This is the same mechanism `/tools/` uses.
 
 ## Redeploys
 
 ```bash
-# Pages (origin of record) — from the repo root
+# reimagine docs proxy — from this repo
+env -u CLOUDFLARE_API_TOKEN -u CLOUDFLARE_ACCOUNT_ID \
+  npx wrangler deploy --config worker/wrangler.toml
+
+# Pages (landing page origin of record) — from the repo root
 env -u CLOUDFLARE_API_TOKEN -u CLOUDFLARE_ACCOUNT_ID \
   npx wrangler pages deploy . --project-name navigators --branch main
-
-# Worker mirror — from the worker/ directory
-env -u CLOUDFLARE_API_TOKEN -u CLOUDFLARE_ACCOUNT_ID npx wrangler deploy
 ```
 
-`worker/` contains wrangler.toml + public/index.html (a copy of the root
-index.html — keep the two in sync on edits, or drop the mirror).
+The docs content itself deploys independently: pushes to
+`Kayforkind/reimagine-it` main rebuild GitHub Pages; the proxy picks the
+new content up automatically (cache max-age 600).
+
+## Adding a new external path like this (the pattern)
+
+1. Deploy a worker (or reuse one) that proxies the origin.
+2. `POST /zones/{zone_id}/workers/routes` with pattern
+   `navigatorslab.com/<path>*` → script name. Done — no DNS.
+3. If the path should be discoverable from the hub, add it to
+   `public/tools.json` with a `url:` field (the grid honors `url`
+   instead of `./<id>.html`).
+
+## Why not a subdomain
+
+A same-account Pages custom domain needs a CNAME record in the zone.
+Every Cloudflare credential available locally is Pages/Workers/AI-scoped
+(wrangler's OAuth catalog has no DNS scope at all), so the record could
+not be created programmatically. The path approach removes the
+dependency entirely.
