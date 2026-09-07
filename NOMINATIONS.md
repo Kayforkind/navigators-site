@@ -1,7 +1,7 @@
 # NavigatorLabs — nominations & submissions kit
 
 Paste-ready copy for the directories, newsletters, and communities that accept
-listings. Every number is verified as of **v2.13.1 (Sep 2026)**: 85★, 1,732
+listings. Every number is verified as of **v2.13.1 (Sep 2026)**: 89★, 1,732
 npm downloads/week, 23 releases, OpenSSF Scorecard 7.0, 116 tests, 96.8%
 pairwise distinctness. Update numbers before submitting if time has passed.
 
@@ -35,7 +35,7 @@ opinion on craft; reimagine-it fits their "developer tools that respect you" bea
 
 ## 2. dev.to article (publish-ready)
 
-**Title:** `I built a design engine that refuses to invent facts (85★, zero dependencies)`
+**Title:** `I built a design engine that refuses to invent facts (89★, zero dependencies)` — now published as the full article in `reimagine-it/ANNOUNCEMENT.md`, title: *"Your content is the design brief: inside reimagine-it, the design engine that refuses to invent facts"*
 
 **Tags:** `webdev`, `css`, `ai`, `opensource`
 
@@ -88,7 +88,7 @@ opinion on craft; reimagine-it fits their "developer tools that respect you" bea
 
 **r/webdev** — title: `I built an offline design engine that never invents facts — it redesigns HTML using only the content already in the file (MIT, no API keys)`
 
-**r/SideProject** — title: `I spent 3 months building a deterministic alternative to AI mood-board redesigners. 85★, 1.7k npm downloads/week, zero dependencies.`
+**r/SideProject** — title: `I spent 3 months building a deterministic alternative to AI mood-board redesigners. 89★, 1.7k npm downloads/week, zero dependencies.`
 
 **Body (both subs, ~150 words):**
 
