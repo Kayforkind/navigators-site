@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>The lab where local-first, private-by-default software gets built, shipped, and documented.</strong><br>
-  Founded and run by <a href="https://github.com/Kayforkind">Kazim Merchant</a> · <a href="https://navigatorslab.com">navigatorslab.com</a> · <a href="https://navigators.com">navigators.com</a>
+  Founded and run by <a href="https://github.com/Kayforkind">Kazim Merchant</a> · <a href="https://navigatorslab.com">navigatorslab.com</a>
 </p>
 
 ---
@@ -21,8 +21,9 @@ Every product is free, MIT-licensed, and runs where your data already lives — 
 | **[PDF Studio](https://github.com/Kayforkind/NavigatorsLab-PDF-Studio)** | The free PDF editor that runs 100% in your browser — edits the text inside your PDF, fills forms, OCRs scans, signs, redacts, diffs revisions, on-device LLM. | [Open the editor](https://kayforkind.github.io/NavigatorsLab-PDF-Studio/) |
 | **[Tools](https://github.com/Kayforkind/NavigatorsLab-Tools)** | Fifteen private in-browser utilities: GPS strip, image shrink, PDF sign/pages/merge, receipt OCR→CSV, private QR, word-level contract diff, audio trim, invoices, print prep. | [Use them](https://navigatorslab.com/tools/) |
 | **[book-guide-mcp](https://github.com/Kayforkind/book-guide-mcp)** | Playbooks and tutors your coding agents run locally. Citations from books you own. No API keys for the core loop. | [GitHub](https://github.com/Kayforkind/book-guide-mcp) |
-| **[study-guide](https://github.com/Kayforkind/study-guide)** | Exam-guides platform — certification prep with topic units and quizzes. | [GitHub](https://github.com/Kayforkind/study-guide) |
 | **[design-health-action](https://github.com/Kayforkind/design-health-action)** | 18 deterministic design-quality checks for HTML as a GitHub Action. No LLM, no API key. | [GitHub](https://github.com/Kayforkind/design-health-action) |
+| **[liecatchers](https://github.com/Kayforkind/liecatchers)** | Your agent said Done — prove it. Ten sensors, one signed RECEIPT.json, zero API keys. | [GitHub](https://github.com/Kayforkind/liecatchers) |
+| **[Data Insights](https://github.com/Kayforkind/data-insights)** | Founder intelligence platform — daily 5W1H briefs and weekly synthesis from public tech signals, with agent APIs. | [GitHub](https://github.com/Kayforkind/data-insights) |
 
 ## The guarantees — and the machinery behind them
 
@@ -32,7 +33,7 @@ Every product is free, MIT-licensed, and runs where your data already lives — 
 - 📦 **Provenance-signed releases** — npm packages ship with **SLSA provenance** and cosign signatures.
 - 🛡️ **OpenSSF Scorecard 7.0** — Token-Permissions 10, Security-Policy 10, SHA-pinned CI, secret-scanning push protection.
 - 🔁 **Proofs, not screenshots** — 17 committed design artifacts regenerate **byte-identically** in CI, including six real public-domain government pages (NPS, NASA, NOAA, Census, Federal Register, Smithsonian).
-- ✅ **One protected main** — every change lands by PR through 16+ required checks; **116 tests** (68 unit + 20 MCP + 28 e2e) on a 155-file parity corpus.
+- ✅ **One protected main** — every change lands by PR through 16+ required checks; **158 tests** (unit + MCP + e2e + audit-parity fuzzing) on a 155-file parity corpus.
 
 ## Upstream, not drive-bys
 
