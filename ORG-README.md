@@ -31,9 +31,9 @@ Every product is free, MIT-licensed, and runs where your data already lives — 
 
 - 🔒 **Private by architecture** — browser tools make zero network calls with your files; the CLI has zero runtime dependencies.
 - 📦 **Provenance-signed releases** — npm packages ship with **SLSA provenance** and cosign signatures.
-- 🛡️ **OpenSSF Scorecard 7.0** — Token-Permissions 10, Security-Policy 10, SHA-pinned CI, secret-scanning push protection.
+- 🛡️ **OpenSSF Scorecard 7.7** — Token-Permissions 10, Security-Policy 10, SHA-pinned CI, secret-scanning push protection.
 - 🔁 **Proofs, not screenshots** — 17 committed design artifacts regenerate **byte-identically** in CI, including six real public-domain government pages (NPS, NASA, NOAA, Census, Federal Register, Smithsonian).
-- ✅ **One protected main** — every change lands by PR through 16+ required checks; **158 tests** (unit + MCP + e2e + audit-parity fuzzing) on a 155-file parity corpus.
+- ✅ **One protected main** — every change lands by PR through 16+ required checks; **160 tests** (unit + MCP + e2e + audit-parity fuzzing) on a 168-file parity corpus.
 
 ## Upstream, not drive-bys
 
