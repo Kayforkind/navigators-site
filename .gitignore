@@ -1,2 +1,4 @@
 .wrangler/
 worker/node_modules/
+# scripts/verify-claims.cjs clones reimagine-it here when no sibling clone exists
+.cache/

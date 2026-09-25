@@ -1,14 +1,14 @@
 name: Site checks
 
-# Static site with no build — the two things that can silently rot are
-# links and the copy. Both run here so a dead product card, a foreign-domain
-# og:url, or another impossible claim can never ship again.
+# Static site with no build — the things that can silently rot are links and
+# the copy. Both run here so a dead product card, a foreign-domain og:url, or
+# another impossible claim can never ship again.
 on:
   push:
     branches: [main]
   pull_request:
   schedule:
-    - cron: '0 6 * * 1' # Mondays 06:00 UTC — links rot without a push
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC — links rot and numbers drift without a push
 
 permissions:
   contents: read
@@ -23,3 +23,39 @@ jobs:
           node-version: 22
       - name: External link check (404 class gated)
         run: node scripts/check-links.cjs
+
+  # The page promises numbers ("185★ · 7.7 Scorecard · 160 tests", "25
+  # releases / 3 mo", "46 merged PRs"). Those drift every time reimagine-it
+  # moves, so this job reads each number out of the copy, re-measures it from
+  # its source of truth, and fails when the two disagree — including when a
+  # claim quietly disappears from the page.
+  claims:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # reimagine-it's own suite probes for `python` and, when it is missing,
+      # still exits 0 while skipping the audit-parity step — which would report
+      # 157 assertions instead of 160 and no corpus/rule line at all. So python
+      # is part of reproducing the published numbers, not an optional extra.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # The numbers come from reimagine-it, so measure it as it is published:
+      # a fresh shallow clone of main, dependencies from the lockfile only.
+      - name: Clone reimagine-it (the source of every count)
+        run: |
+          git clone --depth 1 --quiet https://github.com/Kayforkind/reimagine-it.git .cache/reimagine-it
+          cd .cache/reimagine-it && npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Claim gate (copy vs live APIs and the real test suite)
+        env:
+          # Raised rate limits + a stable identity for the GitHub API calls.
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/verify-claims.cjs
