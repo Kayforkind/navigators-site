@@ -2,7 +2,7 @@
 
 Paste-ready copy for the directories, newsletters, and communities that accept
 listings. Every number is verified as of **v2.13.1 (Sep 2026)**: 89★, 1,732
-npm downloads/week, 23 releases, OpenSSF Scorecard 7.0, 116 tests, 96.8%
+184 GitHub stars, 23 releases, OpenSSF Scorecard 7.7, 158 tests, 96.8%
 pairwise distinctness. Update numbers before submitting if time has passed.
 
 Already merged (do not resubmit): VoltAgent/awesome-agent-skills (#966, #988),
@@ -12,8 +12,10 @@ nullorder/agenthub (#35).
 
 ## 1. Console.dev (newsletter + library)
 
-**Where:** https://console.dev/submit/ — they feature dev tools with a strong
+**Where:** https://console.dev/ — they feature dev tools with a strong
 opinion on craft; reimagine-it fits their "developer tools that respect you" beat.
+(The old `/submit/` path is gone — find the current submission route on the
+homepage before pitching.)
 
 **Short pitch (their style, ~60 words):**
 
@@ -46,7 +48,7 @@ opinion on craft; reimagine-it fits their "developer tools that respect you" bea
 > it extracts the nouns, dates, numbers, emails, and hex colors already in
 > your HTML and builds the design *around them*. A bakery cannot come out
 > marine-teal. The engine is deterministic, offline, zero-dependency, and
-> audited: 19 rules, 116 tests, and 17 committed artifacts that regenerate
+> audited: 19 rules, 158 tests, and 17 committed artifacts that regenerate
 > byte-identically in CI — including six real government pages (NPS, NASA,
 > NOAA, Census, Federal Register, Smithsonian).
 >
@@ -88,7 +90,7 @@ opinion on craft; reimagine-it fits their "developer tools that respect you" bea
 
 **r/webdev** — title: `I built an offline design engine that never invents facts — it redesigns HTML using only the content already in the file (MIT, no API keys)`
 
-**r/SideProject** — title: `I spent 3 months building a deterministic alternative to AI mood-board redesigners. 89★, 1.7k npm downloads/week, zero dependencies.`
+**r/SideProject** — title: `I spent 3 months building a deterministic alternative to AI mood-board redesigners. 184★, zero dependencies, zero network calls.`
 
 **Body (both subs, ~150 words):**
 
@@ -112,7 +114,7 @@ opinion on craft; reimagine-it fits their "developer tools that respect you" bea
 ## 5. GitHub Trending (organic — how to position for it)
 
 Not submittable; driven by stars/velocity in a window. Levers that are legit:
-- Announce v2.14.0 with the new site (navigators.com) on the same day as a
+- Announce v2.16.0 with the hub redesign on the same day as a
   dev.to post + HN Show HN — concentrated traffic beats spread-out mentions.
 - Pin the playground link in every surface (README already does).
 - Ask early stargazers (the 85) to try the playground — engagement signals.
@@ -125,7 +127,7 @@ Not submittable; driven by stars/velocity in a window. Levers that are legit:
 |---|---|---|
 | [AlternativeTo](https://alternativeto.net/) | Add as alternative to "Figma AI" / "Relume" | Angle: offline + deterministic |
 | [Product Hunt](https://www.producthunt.com/) | Launch when v2.14 + site ship | Note: name collision with reimagineit.ai — tagline must lead with "Content-Derived Design" |
-| [awesome-claude-skills](https://github.com/hesreallyhim/awesome-claude-skills) | PR adding reimagine-it under Design | Same copy as VoltAgent PR (#966) |
+| [awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) | PR adding reimagine-it under Design | Same copy as VoltAgent PR (#966) |
 | [mcp.so](https://mcp.so/) + [Smithery](https://smithery.ai/) | Submit the MCP server | Book-guide-mcp AND reimagine-it's MCP |
 | [OpenAlternative](https://openalternative.co/) | Submit PDF Studio + Tools | Angle: private alternatives to Adobe/SmallPDF |
 | [There's An AI For That](https://theresanaiforthat.com/) | Submit reimagine-it | Category: design/dev tools |

@@ -1,6 +1,6 @@
 # Deploying reimagine on navigatorslab.com — runbook
 
-Status as of Sep 7, 2026 — measured, not aspirational.
+Status as of Sep 24, 2026 — measured, not aspirational.
 
 **Decision (Sep 7):** reimagine lives **on the main site** as a path —
 `https://navigatorslab.com/reimagine/` — exactly like `/tools/`. No new
@@ -13,6 +13,7 @@ never validated and is inert (delete it in the dashboard whenever).
 | `navigatorslab.com/reimagine/` | **live** — worker `reimagine-lab` proxies the reimagine-it GitHub Pages origin |
 | `/reimagine` (no slash) and `/Reimagine` | 301 → `/reimagine/` (case-insensitive match on the first segment) |
 | Pages project `navigators` | still live at https://navigators-dvr.pages.dev/ (origin of record for the landing page) |
+| `navigators.com` | **NOT ours** — serves a third party's site (Russ Haynal). Never reference it as a lab surface; do not attach it. |
 | Stale `reimagine.navigatorslab.com` attach | inert — dashboard-only cleanup |
 
 ## How it works

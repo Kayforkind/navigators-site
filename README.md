@@ -5,8 +5,10 @@ HTML file, zero external fetches**, scoring **19/19 CLEAN** on
 [reimagine-it](https://github.com/Kayforkind/reimagine-it)'s own deterministic
 design audit (the lab eats its own cooking).
 
-Deployed to **[navigators.com](https://navigators.com)** on Cloudflare Pages.
-Runbook: [DEPLOY.md](DEPLOY.md).
+Deployed to **[navigatorslab.com](https://navigatorslab.com)** on Cloudflare Pages
+(origin of record: the `navigators` Pages project — see DEPLOY.md). The
+`navigators.com` domain is **not owned by the lab** and must not be referenced
+as a lab surface.
 
 ## Contents
 

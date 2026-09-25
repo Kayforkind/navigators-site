@@ -1,0 +1,25 @@
+name: Site checks
+
+# Static site with no build — the two things that can silently rot are
+# links and the copy. Both run here so a dead product card, a foreign-domain
+# og:url, or another impossible claim can never ship again.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC — links rot without a push
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: External link check (404 class gated)
+        run: node scripts/check-links.cjs
