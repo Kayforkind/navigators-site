@@ -3,92 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>integration-rot — NavigatorLabs</title>
+<title>integration-rot &mdash; NavigatorLabs</title>
 <meta name="description" content="Dependencies rot silently. This autopilot watches yours: it finds every use of a dying API, drafts the migration, and proves the fix with generated contract tests before anything is kept.">
 <link rel="stylesheet" href="/apps/style.css">
 </head>
 <body>
-<div class="backbar"><a class="back" href="/">‹ All apps</a></div>
+<div class="backbar"><a class="back" href="/">&lsaquo; All apps</a></div>
 <section class="d-hero">
   <div class="slide-art" style="background:linear-gradient(115deg,#f59e0b,#ef4444);"></div>
+  <div class="d-glyph l" aria-hidden="true">I</div>
   <div class="d-shade"></div>
   <div class="d-body">
-    <div class="kicker"><span class="n">N</span><span class="tag">Labs original · The newest build</span></div>
+    <div class="kicker"><span class="n">N</span><span class="tag">NEW &middot; The newest build</span></div>
     <h1 class="d-title">integration-rot</h1>
-    <div class="d-meta"><span class="m"><b>ver</b> · v0.4.4</span>
-<span class="m"><b>star</b> · 131 tests</span>
-<span class="m"><b>lic</b> · MIT</span>
-<span class="m"><b>plat</b> · CLI + REST + MCP</span></div>
     <p class="d-log">Dependencies rot silently. This autopilot watches yours: it finds every use of a dying API, drafts the migration, and proves the fix with generated contract tests before anything is kept.</p>
     <div class="d-btns">
-      <a class="btn btn-play" href="https://navigatorslab.com/Integrationrot"><span class="tri">▶</span> Read the docs</a>
-      <a class="btn btn-more" href="https://github.com/Kayforkind/integration-rot">GitHub ↗</a>
-      <a class="btn btn-play" href="https://navigatorslab.com/Integrationrot#waitlist"><span class="tri">✦</span> Join the waitlist</a>
+      <a class="btn btn-play" href="https://navigatorslab.com/Integrationrot"><span class="tri">&rtrif;</span> Read the docs</a>
+      <a class="btn btn-more" href="https://github.com/Kayforkind/integration-rot">GitHub &nearr;</a>
     </div>
+    <p class="d-note"><span class="tri">&diams;</span> A managed cloud version is in the works — monitoring, PRs and all. <a href="https://navigatorslab.com/Integrationrot#waitlist">Join the waitlist &rarr;</a></p>
+    <div class="specbar"><span class="spec"><b>Version</b>v0.4.4</span><span class="spec"><b>License</b>MIT</span><span class="spec"><b>Platform</b>CLI + REST + MCP</span><span class="spec"><b>Notable</b>131 tests</span></div>
   </div>
 </section>
-<section class="d-sec">
-  <h2>Examples</h2><p class="sub">Real things integration-rot does — drawn from the docs, the demos and the repos.</p>
-  <div class="ex-grid"><div class="ex"><div class="k">EXAMPLE 1</div><h3>Stripe Charges becomes PaymentIntents</h3><p>The scanner finds client.charges.create calls, the fixer drafts the PaymentIntents rewrite, and contract tests prove it before the fix is kept.</p></div>
-<div class="ex"><div class="k">EXAMPLE 2</div><h3>SendGrid v2 mail.send, retired</h3><p>The v2 JSON endpoint pattern is detected and rewritten for the v3 API — including the endpoint URL itself.</p></div>
-<div class="ex"><div class="k">EXAMPLE 3</div><h3>Proof, not promises</h3><p>Each fix is applied to a temp copy and exercised by generated contract tests. Green keeps it; red reverts it, automatically.</p></div>
-<div class="ex"><div class="k">EXAMPLE 4</div><h3>The hosted waitlist</h3><p>A managed version is coming — monitoring, PRs and all. Join the waitlist from the docs page.</p></div></div>
+<section class="d-stories">
+<article class="story"><div class="s-num" aria-hidden="true">01</div><div class="s-main"><div class="s-kicker" style="color:#f59e0b">Detects</div><h3>Stripe Charges becomes PaymentIntents</h3><p>The scanner finds client.charges.create calls, the fixer drafts the PaymentIntents rewrite, and contract tests prove it before the fix is kept.</p><div class="s-tags"><span class="tag">Deprecation DB: 76 SDK packages</span><span class="tag">Finds every use of a dying API</span></div></div></article>
+<article class="story flip"><div class="s-num" aria-hidden="true">02</div><div class="s-main"><div class="s-kicker" style="color:#f59e0b">Repairs</div><h3>SendGrid v2 mail.send, retired</h3><p>The v2 JSON endpoint pattern is detected and rewritten for the v3 API — including the endpoint URL itself.</p><div class="s-tags"><span class="tag">Deterministic loop: scan, draft, test, keep-or-revert</span></div></div></article>
+<article class="story"><div class="s-num" aria-hidden="true">03</div><div class="s-main"><div class="s-kicker" style="color:#f59e0b">Repairs</div><h3>Proof, not promises</h3><p>Each fix is applied to a temp copy and exercised by generated contract tests. Green keeps it; red reverts it, automatically.</p><div class="s-tags"><span class="tag">Contract tests generated per fix</span><span class="tag">Run hermetically</span></div></div></article>
+<div class="also"><span class="also-k">Also in the box</span><div class="s-tags"><span class="tag ghost">CLI, REST API and MCP server interfaces</span><span class="tag ghost">Zero runtime dependencies</span></div></div>
 </section>
-<section class="d-sec">
-  <h2>Details</h2><p class="sub">What ships with it.</p>
-  <ul class="feat"><li>Deprecation DB covering 76 SDK packages</li>
-<li>Deterministic planner: scan, draft, test, keep-or-revert</li>
-<li>Contract tests generated per fix, run hermetically</li>
-<li>CLI, REST API and MCP server interfaces</li>
-<li>Zero runtime dependencies</li></ul>
-</section>
-<section class="d-sec">
-  <h2>More Like This</h2><p class="sub">From the same lab, same guarantees.</p>
-  <div class="like-row">
-<article class="card">
-  <a class="card-main" href="/apps/liecatchers/" aria-label="liecatchers details">
-    <div class="card-art" style="background:linear-gradient(155deg,#3f3f46,#b91c1c);">
-      <span class="card-badge">ORIGINAL</span>
-      <span class="glyph">L</span>
-      <span class="gname">liecatchers</span>
-    </div>
-    <div class="card-info"><h3>liecatchers</h3><p>Your agent said “done.” Prove it. Ten sensors interrogate the workspace after every agent run — and hand you a signed RECEIPT.json you can paste straight into the next turn.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://github.com/Kayforkind/liecatchers">▶ Open</a>
-    <a class="mini-btn" href="/apps/liecatchers/">ⓘ Details</a>
-  </div>
-</article>
-
-<article class="card">
-  <a class="card-main" href="/apps/design-health-action/" aria-label="design-health-action details">
-    <div class="card-art" style="background:linear-gradient(120deg,#0284c7,#6366f1);">
-      <span class="card-badge">ORIGINAL</span>
-      <span class="glyph">D</span>
-      <span class="gname">design-health-action</span>
-    </div>
-    <div class="card-info"><h3>design-health-action</h3><p>Eighteen deterministic design-quality checks as a GitHub Action. It fails your build when the palette drifts, motion support is missing, or content is fabricated — no LLM, no API key, seconds per run.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://github.com/Kayforkind/design-health-action">▶ Open</a>
-    <a class="mini-btn" href="/apps/design-health-action/">ⓘ Details</a>
-  </div>
-</article>
-
-<article class="card">
-  <a class="card-main" href="/apps/reimagine-it/" aria-label="reimagine-it details">
-    <div class="card-art" style="background:linear-gradient(135deg,#7c3aed,#db2777);">
-      <span class="card-badge">FLAGSHIP</span>
-      <span class="glyph">R</span>
-      <span class="gname">reimagine-it</span>
-    </div>
-    <div class="card-info"><h3>reimagine-it</h3><p>The design engine that refuses to invent facts. Point it at any HTML page and it rebuilds the design from the page's own nouns, dates, numbers and colors — seventeen directions, zero dependencies, fully offline.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://navigatorslab.com/reimagine/">▶ Open</a>
-    <a class="mini-btn" href="/apps/reimagine-it/">ⓘ Details</a>
-  </div>
-</article></div>
+<section class="d-rel">
+  <h2>Elsewhere in the lab</h2>
+  <div class="rel-list"><a class="rel-row" href="/apps/liecatchers/"><span class="rel-glyph" style="background:linear-gradient(155deg,#3f3f46,#b91c1c)">L</span><span class="rel-main"><b>liecatchers</b><i>Proves your agent actually did the work</i></span><span class="rel-go">&rarr;</span></a>
+<a class="rel-row" href="/apps/design-health-action/"><span class="rel-glyph" style="background:linear-gradient(120deg,#0284c7,#6366f1)">D</span><span class="rel-main"><b>design-health-action</b><i>A design-quality gate for CI</i></span><span class="rel-go">&rarr;</span></a>
+<a class="rel-row" href="/apps/reimagine-it/"><span class="rel-glyph" style="background:linear-gradient(135deg,#7c3aed,#db2777)">R</span><span class="rel-main"><b>reimagine-it</b><i>Rebuilds any web page's design from its own content</i></span><span class="rel-go">&rarr;</span></a></div>
 </section>
 
 <footer>

@@ -19,41 +19,35 @@ APPS = [
   slug="reimagine-it", name="reimagine-it", glyph="R",
   c1="#7c3aed", c2="#db2777", angle="135deg",
   badge="FLAGSHIP", matchline="The lab's flagship",
+  blurb="Rebuilds any web page's design from its own content",
   logline=("The design engine that refuses to invent facts. Point it at any HTML "
            "page and it rebuilds the design from the page's own nouns, dates, numbers "
            "and colors — seventeen directions, zero dependencies, fully offline."),
   meta=[("v2.15.0", "ver"), ("MIT", "lic"), ("CLI + Web", "plat")],
   open=("Open playground", "https://navigatorslab.com/reimagine/"),
   github="https://github.com/Kayforkind/reimagine-it",
-  examples=[
-   ("Six government pages, seventeen directions",
-    "NPS, NASA, NOAA, Census, Federal Register and Smithsonian pages were each "
-    "regenerated in 17 design directions — byte-identically reproducible in CI."),
-   ("The 19-rule deterministic audit",
-    "Every output is scored against 19 design rules with no model in the loop. "
-    "This very site scored 19/19 CLEAN."),
-   ("Live playground, no install",
-    "Paste any HTML into the playground, pick a direction, and take home a "
-    "standalone redesigned page."),
-   ("An agent skill, not just a CLI",
-    "Ships with a Claude Code / Cursor skill and an MCP server, so coding agents "
-    "can drive redesigns themselves."),
+  stories=[
+   ("Generates", "Six government pages, seventeen directions",
+    "NPS, NASA, NOAA, Census, Federal Register and Smithsonian pages were each regenerated in 17 design directions — byte-identically reproducible in CI.",
+    ["17 content-derived design directions", "Rebuilds from the page’s own nouns, dates, numbers and colors"]),
+   ("Verifies", "The 19-rule deterministic audit",
+    "Every output is scored against 19 design rules with no model in the loop. This very site scored 19/19 CLEAN.",
+    ["No LLM in the loop", "Byte-identical regeneration across a 168-file corpus in CI"]),
+   ("Generates", "Live playground, no install",
+    "Paste any HTML into the playground, pick a direction, and take home a standalone redesigned page.",
+    ["Zero runtime dependencies", "Works fully offline"]),
+   ("Plays well with agents", "An agent skill, not just a CLI",
+    "Ships with a Claude Code / Cursor skill and an MCP server, so coding agents can drive redesigns themselves.",
+    ["MCP server", "Agent skill for Claude Code and Cursor"]),
   ],
-  caps=[("Generates",
-         ["17 content-derived design directions",
-          "Rebuilds from the page's own nouns, dates, numbers and colors"]),
-        ("Verifies",
-         ["19-rule deterministic audit — no LLM in the loop",
-          "Byte-identical regeneration across a 168-file corpus in CI"]),
-        ("Plays well with agents",
-         ["MCP server + agent skill for Claude Code and Cursor",
-          "Zero runtime dependencies; works fully offline"])],
+  also=[],
   likes=["integration-rot", "design-health-action", "liecatchers"],
  ),
  dict(
   slug="integration-rot", name="integration-rot", glyph="I",
   c1="#f59e0b", c2="#ef4444", angle="115deg",
   badge="NEW", matchline="The newest build",
+  blurb="Autopilot that migrates your dying API calls",
   logline=("Dependencies rot silently. This autopilot watches yours: it finds every "
            "use of a dying API, drafts the migration, and proves the fix with "
            "generated contract tests before anything is kept."),
@@ -61,223 +55,190 @@ APPS = [
   open=("Read the docs", "https://navigatorslab.com/Integrationrot"),
   github="https://github.com/Kayforkind/integration-rot",
   waitlist="https://navigatorslab.com/Integrationrot#waitlist",
-  examples=[
-   ("Stripe Charges becomes PaymentIntents",
-    "The scanner finds client.charges.create calls, the fixer drafts the "
-    "PaymentIntents rewrite, and contract tests prove it before the fix is kept."),
-   ("SendGrid v2 mail.send, retired",
-    "The v2 JSON endpoint pattern is detected and rewritten for the v3 API — "
-    "including the endpoint URL itself."),
-   ("Proof, not promises",
-    "Each fix is applied to a temp copy and exercised by generated contract "
-    "tests. Green keeps it; red reverts it, automatically."),
-   ("The hosted waitlist",
-    "A managed version is coming — monitoring, PRs and all. Join the waitlist "
-    "from the docs page."),
+  note="A managed cloud version is in the works — monitoring, PRs and all.",
+  stories=[
+   ("Detects", "Stripe Charges becomes PaymentIntents",
+    "The scanner finds client.charges.create calls, the fixer drafts the PaymentIntents rewrite, and contract tests prove it before the fix is kept.",
+    ["Deprecation DB: 76 SDK packages", "Finds every use of a dying API"]),
+   ("Repairs", "SendGrid v2 mail.send, retired",
+    "The v2 JSON endpoint pattern is detected and rewritten for the v3 API — including the endpoint URL itself.",
+    ["Deterministic loop: scan, draft, test, keep-or-revert"]),
+   ("Repairs", "Proof, not promises",
+    "Each fix is applied to a temp copy and exercised by generated contract tests. Green keeps it; red reverts it, automatically.",
+    ["Contract tests generated per fix", "Run hermetically"]),
   ],
-  caps=[("Detects",
-         ["Deprecation DB covering 76 SDK packages",
-          "Finds every use of a dying API in your repo"]),
-        ("Repairs",
-         ["Deterministic loop: scan, draft, test, keep-or-revert",
-          "Contract tests generated per fix, run hermetically"]),
-        ("Fits your workflow",
-         ["CLI, REST API and MCP server interfaces",
-          "Zero runtime dependencies"])],
+  also=["CLI, REST API and MCP server interfaces", "Zero runtime dependencies"],
   likes=["liecatchers", "design-health-action", "reimagine-it"],
  ),
  dict(
   slug="pdf-studio", name="PDF Studio", glyph="P",
   c1="#dc2626", c2="#7c2d12", angle="150deg",
   badge="ORIGINAL", matchline="A lab original",
+  blurb="Full PDF editor — your file never uploads",
   logline=("A complete PDF editor that never uploads your file. Edit the text inside "
            "your PDF, fill forms, OCR scans, sign, redact and diff revisions — "
            "entirely in your browser."),
   meta=[("Web app", "plat"), ("100% client-side", "star"), ("MIT", "lic"), ("No account", "ver")],
   open=("Open the editor", "https://navigatorslab.com/pdf-studio/"),
   github="https://github.com/Kayforkind/NavigatorsLab-PDF-Studio",
-  examples=[
-   ("Redact a contract",
-    "Burn social security and bank numbers out of a PDF so they can never be recovered."),
-   ("Fill and sign a W-9",
-    "Complete form fields and add your signature without printing a page."),
-   ("OCR a phone scan",
-    "Turn a crooked photo of a document into searchable, selectable text."),
-   ("Diff two revisions",
-    "Compare proposal v2 against v3 and see exactly what changed."),
+  stories=[
+   ("Edit", "Edit the text itself",
+    "Change the words already inside the PDF — true content-stream edits, not annotations layered on top.",
+    ["Table cells stay independent when you edit"]),
+   ("Edit", "Fill and sign a W-9",
+    "Complete form fields and add your signature without printing a page.",
+    ["Fill real AcroForms, then flatten them", "Sign with the on-page signature pad"]),
+   ("Protect", "Redact a contract",
+    "Burn social security and bank numbers out of a PDF so they can never be recovered.",
+    ["Redaction burns content — not covers it", "Your file never leaves the device"]),
+   ("Understand", "OCR a phone scan",
+    "Turn a crooked photo of a document into searchable, selectable text.",
+    ["On-device OCR", "Ask an on-device LLM about the document"]),
+   ("Understand", "Diff two revisions",
+    "Compare proposal v2 against v3 and see exactly what changed.",
+    ["Line-by-line diff"]),
   ],
-  caps=[("Edit",
-         ["Rewrite the text already inside the PDF — true content-stream edits",
-          "Fill real AcroForms, then flatten them",
-          "Table cells stay independent when you edit"]),
-        ("Protect",
-         ["Redaction that burns content — not covers it",
-          "Sign with the on-page signature pad",
-          "Your file never leaves the device"]),
-        ("Understand",
-         ["On-device OCR turns scans into editable text",
-          "Line-by-line diff of two revisions",
-          "Ask an on-device LLM about the document"]),
-        ("Organize",
-         ["Reorder, rotate, merge and split pages",
-          "Stamp page numbers, watermarks, headers and footers",
-          "Full-text search across the document"])],
+  also=["Reorder, rotate, merge and split pages", "Page numbers, watermarks, headers and footers", "Full-text search across the document"],
   likes=["tools", "reimagine-it", "liecatchers"],
  ),
  dict(
   slug="tools", name="23 Tools", glyph="T",
   c1="#0d9488", c2="#0ea5e9", angle="125deg",
   badge="ORIGINAL", matchline="Twenty-three deep",
+  blurb="23 private tools for everyday files",
   logline=("Twenty-three tools, games and projects for everyday files. "
            "Strip photo GPS, shrink images, OCR receipts to CSV, diff contracts word "
            "by word — nothing leaves your device."),
   meta=[("23 tools, games & projects", "ver"), ("100% client-side", "star"), ("MIT", "lic"), ("MCP endpoint", "plat")],
   open=("Browse the tools", "https://navigatorslab.com/tools/"),
   github="https://github.com/Kayforkind/NavigatorsLab-Tools",
-  examples=[
-   ("Strip GPS before sharing",
-    "Remove location data from vacation photos before they go anywhere."),
-   ("Receipt photo becomes a spreadsheet",
-    "Snap a receipt; get clean CSV rows for expenses."),
-   ("Contract diff, word by word",
-    "Redline two drafts and catch the one changed clause that matters."),
-   ("Shrink a folder for the web",
-    "Batch images down to size with no uploads and no quality surprises."),
+  stories=[
+   ("The collection", "Strip GPS before sharing",
+    "Remove location data from vacation photos before they go anywhere.",
+    ["23 tools, games and projects"]),
+   ("The collection", "Receipt photo becomes a spreadsheet",
+    "Snap a receipt; get clean CSV rows for expenses.",
+    ["Documents, text, data, images, media and files — plus games"]),
+   ("The collection", "Contract diff, word by word",
+    "Redline two drafts and catch the one changed clause that matters.",
+    []),
+   ("Made for flow", "Shrink a folder for the web",
+    "Batch images down to size with no uploads and no quality surprises.",
+    ["Deep links with parameters drive any tool from a URL", "A QR code for every tool — phone handoff in one scan", "Fully offline once loaded; zero telemetry"]),
   ],
-  caps=[("The collection",
-         ["23 tools, games and projects",
-          "Documents, text, data, images, media and files — plus games"]),
-        ("Made for flow",
-         ["Deep links with parameters drive any tool from a URL",
-          "A QR code for every tool — phone handoff in one scan",
-          "Fully offline once loaded; zero telemetry"]),
-        ("For agents",
-         ["MCP endpoint so AI agents can operate every tool"])],
+  also=["MCP endpoint so AI agents can operate every tool"],
   likes=["pdf-studio", "book-guide-mcp", "reimagine-it"],
  ),
  dict(
   slug="book-guide-mcp", name="book-guide-mcp", glyph="B",
   c1="#059669", c2="#a3e635", angle="140deg",
   badge="ORIGINAL", matchline="Agents, meet your library",
+  blurb="Your trusted books, as agent skills",
   logline=("Turn the books you trust into skills your coding agent can call. "
            "Playbooks, frameworks and Socratic tutors — every claim cited with a "
            "locator, everything running locally."),
   meta=[("v0.2.0", "ver"), ("MCP server", "plat"), ("MIT", "lic"), ("No API keys", "star")],
   open=("View on GitHub", "https://github.com/Kayforkind/book-guide-mcp"),
   github="https://github.com/Kayforkind/book-guide-mcp",
-  examples=[
-   ("skill_match routes the question",
-    "Ask how to price a launch; the server routes it to the pricing book's skill, not generic advice."),
-   ("skill_cite with locators",
-    "Every claim the agent makes carries a book locator you can verify."),
-   ("The Socratic tutor",
-    "Learns by questioning — the agent teaches you instead of telling you."),
-   ("The Avicenna tutor",
-    "Teaches from first principles, step by step, from texts you own."),
+  stories=[
+   ("The library", "skill_match routes the question",
+    "Ask how to price a launch; the server routes it to the pricing book’s skill, not generic advice.",
+    ["Turn the books you trust into agent skills", "L0 Library to L4 Mentor skill packages"]),
+   ("Cited, not invented", "skill_cite with locators",
+    "Every claim the agent makes carries a book locator you can verify.",
+    ["skill_match, skill_search and skill_cite tools"]),
+   ("The library", "The Socratic tutor",
+    "Learns by questioning — the agent teaches you instead of telling you.",
+    ["Playbooks, frameworks, Socratic and Avicenna tutors"]),
+   ("The library", "The Avicenna tutor",
+    "Teaches from first principles, step by step, from texts you own.",
+    []),
   ],
-  caps=[("The library",
-         ["Turn the books you trust into agent skills",
-          "L0 Library to L4 Mentor skill packages",
-          "Playbooks, frameworks, Socratic and Avicenna tutors"]),
-        ("Cited, not invented",
-         ["skill_match, skill_search and skill_cite tools",
-          "Every claim carries a book locator"]),
-        ("Runs anywhere",
-         ["MCP hosts include Cursor, Claude Code, VS Code and Zed",
-          "Local-first; no API keys for the core loop"])],
+  also=["MCP hosts: Cursor, Claude Code, VS Code and Zed", "Local-first; no API keys for the core loop"],
   likes=["liecatchers", "tools", "design-health-action"],
  ),
  dict(
   slug="design-health-action", name="design-health-action", glyph="D",
   c1="#0284c7", c2="#6366f1", angle="120deg",
   badge="ORIGINAL", matchline="The CI gate",
+  blurb="A design-quality gate for CI",
   logline=("Eighteen deterministic design-quality checks as a GitHub Action. It fails "
            "your build when the palette drifts, motion support is missing, or content "
            "is fabricated — no LLM, no API key, seconds per run."),
   meta=[("v1.0.1", "ver"), ("18 checks", "star"), ("MIT", "lic"), ("GitHub Action", "plat")],
   open=("View on GitHub", "https://github.com/Kayforkind/design-health-action"),
   github="https://github.com/Kayforkind/design-health-action",
-  examples=[
-   ("Off-palette accent fails the build",
-    "More than five non-neutral colors, or an accent outside the palette — blocked."),
-   ("Motion support is mandatory",
-    "Missing prefers-reduced-motion or focus-visible styles get flagged before merge."),
-   ("Fabricated content caught",
-    "Placeholder labels and invented copy are detected as content failures."),
-   ("verdict: CLEAN",
-    "Each run posts a summary table — verdict, failures, warnings — to the workflow."),
+  stories=[
+   ("The gate", "Off-palette accent fails the build",
+    "More than five non-neutral colors, or an accent outside the palette — blocked.",
+    ["18 checks: Typography, Palette, Motion, Content, Structure, Performance"]),
+   ("The gate", "Motion support is mandatory",
+    "Missing prefers-reduced-motion or focus-visible styles get flagged before merge.",
+    []),
+   ("The gate", "Fabricated content caught",
+    "Placeholder labels and invented copy are detected as content failures.",
+    []),
+   ("Deterministic", "verdict: CLEAN",
+    "Each run posts a summary table — verdict, failures, warnings — to the workflow.",
+    ["No model, no network, no API key", "verdict / failures / warnings / summary outputs"]),
   ],
-  caps=[("The gate",
-         ["18 checks across Typography, Palette, Motion, Content, Structure, Performance",
-          "Fails the build on palette drift, missing motion support, fabricated content"]),
-        ("Deterministic",
-         ["No model, no network, no API key",
-          "verdict / failures / warnings / summary outputs"]),
-        ("Strict when you want it",
-         ["fail-on-warnings and strict modes for tight gates",
-          "The CI-quality-gate half of reimagine-it"])],
+  also=["fail-on-warnings and strict modes for tight gates", "The CI-quality-gate half of reimagine-it"],
   likes=["reimagine-it", "liecatchers", "integration-rot"],
  ),
  dict(
   slug="liecatchers", name="liecatchers", glyph="L",
   c1="#3f3f46", c2="#b91c1c", angle="155deg",
   badge="ORIGINAL", matchline="Trust, verified",
+  blurb="Proves your agent actually did the work",
   logline=("Your agent said \u201cdone.\u201d Prove it. Ten sensors interrogate the "
            "workspace after every agent run — and hand you a signed RECEIPT.json you "
            "can paste straight into the next turn."),
   meta=[("CLI", "plat"), ("10 sensors", "star"), ("MIT", "lic"), ("Windows-first", "ver")],
   open=("View on GitHub", "https://github.com/Kayforkind/liecatchers"),
   github="https://github.com/Kayforkind/liecatchers",
-  examples=[
-   ("The tests never ran",
-    "The agent printed \u201cDone\u201d; the sensor shows no test process ever executed. Exit code 1."),
-   ("Invented paths in the PR",
-    "The PR references files that are not in the git diff — caught and listed."),
-   ("Green npm, missing binaries",
-    "Install looks fine but native modules are absent. The sensor knows."),
-   ("RECEIPT.json",
-    "One signed machine-readable receipt: paste it into the next agent turn and continue honestly."),
+  stories=[
+   ("The sensors", "The tests never ran",
+    "The agent printed “Done”; the sensor shows no test process ever executed. Exit code 1.",
+    ["10 sensors: commands, git diff, lockfiles, native modules, handoffs"]),
+   ("The sensors", "Invented paths in the PR",
+    "The PR references files that are not in the git diff — caught and listed.",
+    []),
+   ("The sensors", "Green npm, missing binaries",
+    "Install looks fine but native modules are absent. The sensor knows.",
+    ["Catches unrun tests, invented paths, missing binaries"]),
+   ("The receipt", "RECEIPT.json",
+    "One signed machine-readable receipt: paste it into the next agent turn and continue honestly.",
+    ["Signed RECEIPT.json — the one source of truth"]),
   ],
-  caps=[("The sensors",
-         ["10 sensors: commands, git diff, lockfiles, native modules, handoffs",
-          "Catches unrun tests, invented paths, missing binaries"]),
-        ("The receipt",
-         ["Signed RECEIPT.json — the one source of truth",
-          "Paste it into the next agent turn and continue honestly"]),
-        ("In the loop",
-         ["30-second fail-demo proves the detection works",
-          "Cursor stop-hook runs it automatically",
-          "Zero API keys, Windows-first"])],
+  also=["30-second fail-demo proves the detection works", "Cursor stop-hook runs it automatically", "Zero API keys, Windows-first"],
   likes=["integration-rot", "book-guide-mcp", "design-health-action"],
  ),
  dict(
   slug="data-insights", name="Data Insights", glyph="Δ",
   c1="#4f46e5", c2="#0ea5e9", angle="130deg",
   badge="ORIGINAL", matchline="The morning brief",
+  blurb="Daily founder-intelligence briefs",
   logline=("A founder intelligence platform that reads the public web for you. Daily "
            "5W1H briefs and weekly synthesis from technology, startup, research and "
            "security signals — with agent APIs on top."),
   meta=[("Web + CLI", "plat"), ("Daily briefs", "star"), ("JSON APIs", "ver")],
   open=("View on GitHub", "https://github.com/Kayforkind/data-insights"),
   github="https://github.com/Kayforkind/data-insights",
-  examples=[
-   ("The daily 5W1H",
-    "Every morning: who, what, when, where, why and how across the signals that matter."),
-   ("The weekly synthesis",
-    "Themes, momentum, opportunities, risks and experiments — plus a print-ready edition."),
-   ("Search any topic",
-    "npm run cli -- search robotics — follow a topic into its live signals and source history."),
-   ("The agent CLI",
-    "npm run cli -- search robotics — the same intelligence, scriptable."),
+  stories=[
+   ("Briefs", "The daily 5W1H",
+    "Every morning: who, what, when, where, why and how across the signals that matter.",
+    ["/report: daily 5W1H brief"]),
+   ("Briefs", "The weekly synthesis",
+    "Themes, momentum, opportunities, risks and experiments — plus a print-ready edition.",
+    ["/weekly: synthesis with themes, risks, experiments"]),
+   ("Research", "Search any topic",
+    "Follow a topic into its live signals and source history.",
+    ["Topic search across live signals and source history", "/portal: headline river without licensed full text"]),
+   ("For agents", "The agent CLI",
+    "The same intelligence, scriptable.",
+    ["JSON APIs + CLI for agents"]),
   ],
-  caps=[("Briefs",
-         ["/report: daily 5W1H brief",
-          "/weekly: synthesis with themes, risks, experiments"]),
-        ("Research",
-         ["Topic search across live signals and source history",
-          "/portal: headline river without licensed full text"]),
-        ("For agents",
-         ["JSON APIs + CLI for agents"])],
+  also=[],
   likes=["tools", "pdf-studio", "book-guide-mcp"],
  ),
 ]
@@ -379,37 +340,59 @@ a{color:inherit;text-decoration:none}
 .back{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#fff;
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:8px 18px}
 .back:hover{background:rgba(255,255,255,.16)}
-.d-hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden}
+.d-hero{position:relative;min-height:74vh;display:flex;align-items:flex-end;overflow:hidden}
+.d-glyph{position:absolute;top:2%;z-index:1;font-family:var(--serif);font-weight:700;
+  font-size:min(34vw,380px);line-height:1;color:rgba(255,255,255,.09);
+  pointer-events:none;user-select:none}
+.d-glyph.l{left:2vw}.d-glyph.r{right:2vw}
 .d-shade{position:absolute;inset:0;background:linear-gradient(77deg,rgba(6,6,10,.95) 25%,rgba(6,6,10,.45) 55%,transparent 80%),
   linear-gradient(0deg,var(--bg) 4%,transparent 34%),linear-gradient(180deg,rgba(6,6,10,.55),transparent 30%)}
-.d-body{position:relative;z-index:2;padding:0 4vw 8vh;max-width:900px}
+.d-body{position:relative;z-index:2;padding:0 4vw 6vh;max-width:900px}
 .d-title{font-family:var(--serif);font-size:clamp(44px,6vw,84px);font-weight:700;letter-spacing:-.5px;
   line-height:1.02;margin:12px 0 18px}
-.d-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:16px;font-size:14px;color:#d7d7de}
-.d-meta .m{border:1px solid var(--line);background:rgba(255,255,255,.05);padding:5px 12px;border-radius:5px;font-size:12.5px}
-.d-meta .m b{color:var(--brand);font-weight:700}
 .d-log{font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:#e2e2e9;max-width:62ch;margin-bottom:28px}
 .d-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
-.d-sec{padding:34px 4vw;max-width:1200px}
-.d-sec h2{font-size:22px;margin-bottom:6px}
-.d-sec .sub{color:var(--mut);font-size:14px;margin-bottom:20px}
-.ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-.ex{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px;transition:border-color .2s,transform .2s}
-.ex:hover{border-color:#3a3a48;transform:translateY(-3px)}
-.ex .k{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--brand);margin-bottom:10px}
-.ex h3{font-size:16px;margin-bottom:8px;line-height:1.35}
-.ex p{font-size:13.5px;color:var(--mut);line-height:1.55}
-.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;list-style:none}
-.feat li{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:13.5px;color:#d7d7de}
-.feat li::before{content:"✓ ";color:var(--brand);font-weight:800}
-.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
-.cap-group h3{font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
-.cap-group .feat{grid-template-columns:1fr}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-.fact{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
-.fact dt{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
-.fact dd{margin:0;font-size:15px;font-weight:600;color:var(--txt)}
-.like-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.d-note{margin:16px 0 0;font-size:14px;color:var(--mut);max-width:60ch}
+.d-note .tri{color:var(--brand);font-size:11px;margin-right:6px}
+.d-note a{color:var(--brand);font-weight:700}
+.d-note a:hover{text-decoration:underline}
+.specbar{display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:24px;padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.14)}
+.specbar .spec{font-size:14.5px;color:#ececf1;font-weight:600}
+.specbar .spec b{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--dim);font-weight:800;margin-bottom:4px}
+/* stories: one merged Capabilities+Examples narrative per app */
+.d-stories{padding:54px 4vw 6px;max-width:1060px}
+.story{display:grid;grid-template-columns:110px 1fr;gap:28px;padding:36px 0;border-top:1px solid var(--line)}
+.story:first-child{border-top:0;padding-top:6px}
+.story.flip{grid-template-columns:1fr 110px}
+.story.flip .s-num{order:2;text-align:right}
+.story.flip .s-main{order:1}
+.s-num{font-family:var(--serif);font-size:62px;font-weight:700;line-height:1;color:#26262f}
+.s-kicker{font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px}
+.story h3{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:700;
+  letter-spacing:-.3px;margin-bottom:10px;line-height:1.2}
+.story p{font-size:15px;color:var(--mut);line-height:1.65;max-width:60ch;margin-bottom:14px}
+.s-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:12px;font-weight:600;color:#d7d7de;border:1px solid var(--line);
+  background:var(--bg2);border-radius:20px;padding:6px 13px}
+.tag.ghost{border-style:dashed;color:var(--mut)}
+.also{margin:34px 0 12px;padding:22px;border:1px dashed var(--line);border-radius:12px}
+.also-k{display:block;font-size:11px;font-weight:800;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+/* related: slim rows, no cloned homepage cards */
+.d-rel{padding:44px 4vw 6px;max-width:1060px}
+.d-rel h2{font-size:22px;margin-bottom:16px}
+.rel-list{border-top:1px solid var(--line)}
+.rel-row{display:flex;align-items:center;gap:16px;padding:15px 6px;border-bottom:1px solid var(--line)}
+.rel-row:hover{background:rgba(255,255,255,.03)}
+.rel-glyph{flex:0 0 44px;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-family:var(--serif);font-weight:700;font-size:21px;color:rgba(255,255,255,.92)}
+.rel-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+.rel-main b{font-size:15px}
+.rel-main i{font-style:normal;font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rel-go{margin-left:auto;color:var(--dim);font-size:18px;transition:transform .15s,color .15s;flex:0 0 auto}
+.rel-row:hover .rel-go{color:var(--brand);transform:translateX(4px)}
 
 /* ---------- footer ---------- */
 footer{margin-top:60px;padding:40px 4vw 60px;color:var(--dim);font-size:13px;border-top:1px solid #17171e}
@@ -540,62 +523,78 @@ def home():
 </body>
 </html>"""
 
+def story_block(a, i, k, t, d, tags):
+    tag_html = "".join(f'<span class="tag">{x}</span>' for x in tags)
+    tags_row = f'<div class="s-tags">{tag_html}</div>' if tag_html else ""
+    flip = " flip" if i % 2 else ""
+    return (f'<article class="story{flip}">'
+            f'<div class="s-num" aria-hidden="true">{i+1:02d}</div>'
+            f'<div class="s-main"><div class="s-kicker" style="color:{a["c1"]}">{k}</div>'
+            f"<h3>{t}</h3><p>{d}</p>{tags_row}</div></article>")
+
+
 def detail(a):
-    ex = "\n".join(
-        f'<div class="ex"><div class="k">EXAMPLE {i+1}</div><h3>{t}</h3><p>{d}</p></div>'
-        for i, (t, d) in enumerate(a["examples"]))
-    caps = "\n".join(
-        f'<div class="cap-group"><h3>{g}</h3><ul class="feat">'
-        + "\n".join(f"<li>{f}</li>" for f in items)
-        + "</ul></div>"
-        for g, items in a["caps"])
-    likes = "\n".join(card(BY_SLUG[s]) for s in a["likes"])
+    stories = "\n".join(
+        story_block(a, i, k, t, d, tags)
+        for i, (k, t, d, tags) in enumerate(a["stories"]))
+    also = ""
+    if a.get("also"):
+        chips = "".join(f'<span class="tag ghost">{x}</span>' for x in a["also"])
+        also = (f'<div class="also"><span class="also-k">Also in the box</span>'
+                f'<div class="s-tags">{chips}</div></div>')
     meta_labels = {"ver": "Version", "lic": "License", "plat": "Platform", "star": "Notable"}
-    facts = "\n".join(
-        f'<div class="fact"><dt>{meta_labels.get(k, k)}</dt><dd>{v}</dd></div>'
-        for v, k in a["meta"])
-    waitlist = (f'<a class="btn btn-play" href="{a["waitlist"]}"><span class="tri">✦</span> Join the waitlist</a>'
-                if "waitlist" in a else "")
+    key_order = {"ver": 0, "lic": 1, "plat": 2, "star": 3}
+    specs = "".join(
+        f'<span class="spec"><b>{meta_labels.get(k, k)}</b>{v}</span>'
+        for v, k in sorted(a["meta"], key=lambda vk: key_order.get(vk[1], 9)))
+    rel = "\n".join(
+        f'<a class="rel-row" href="/apps/{s}/">'
+        f'<span class="rel-glyph" style="background:linear-gradient('
+        f'{BY_SLUG[s]["angle"]},{BY_SLUG[s]["c1"]},{BY_SLUG[s]["c2"]})">'
+        f'{BY_SLUG[s]["glyph"]}</span>'
+        f'<span class="rel-main"><b>{BY_SLUG[s]["name"]}</b>'
+        f'<i>{BY_SLUG[s]["blurb"]}</i></span>'
+        f'<span class="rel-go">&rarr;</span></a>'
+        for s in a["likes"])
+    note = ""
+    if "note" in a:
+        note = (f'<p class="d-note"><span class="tri">&diams;</span> {a["note"]} '
+                f'<a href="{a["waitlist"]}">Join the waitlist &rarr;</a></p>')
+    flip = " r" if sum(ord(c) for c in a["slug"]) % 2 else " l"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{a['name']} — NavigatorLabs</title>
+<title>{a['name']} &mdash; NavigatorLabs</title>
 <meta name="description" content="{a['logline']}">
 <link rel="stylesheet" href="/apps/style.css">
 </head>
 <body>
-<div class="backbar"><a class="back" href="/">‹ All apps</a></div>
+<div class="backbar"><a class="back" href="/">&lsaquo; All apps</a></div>
 <section class="d-hero">
   <div class="slide-art" style="{art_style(a)}"></div>
+  <div class="d-glyph{flip}" aria-hidden="true">{a['glyph']}</div>
   <div class="d-shade"></div>
   <div class="d-body">
-    <div class="kicker"><span class="n">N</span><span class="tag">Labs original · {a['matchline']}</span></div>
+    <div class="kicker"><span class="n">N</span><span class="tag">{a['badge']} &middot; {a['matchline']}</span></div>
     <h1 class="d-title">{a['name']}</h1>
     <p class="d-log">{a['logline']}</p>
     <div class="d-btns">
-      <a class="btn btn-play" href="{a['open'][1]}"><span class="tri">▶</span> {a['open'][0]}</a>
-      <a class="btn btn-more" href="{a['github']}">GitHub ↗</a>
-      {waitlist}
+      <a class="btn btn-play" href="{a['open'][1]}"><span class="tri">&rtrif;</span> {a['open'][0]}</a>
+      <a class="btn btn-more" href="{a['github']}">GitHub &nearr;</a>
     </div>
+    {note}
+    <div class="specbar">{specs}</div>
   </div>
 </section>
-<section class="d-sec">
-  <h2>Capabilities</h2><p class="sub">What {a['name']} does, grouped by job.</p>
-  <div class="caps">{caps}</div>
+<section class="d-stories">
+{stories}
+{also}
 </section>
-<section class="d-sec">
-  <h2>Examples</h2><p class="sub">Real things {a['name']} does — drawn from the docs, the demos and the repos.</p>
-  <div class="ex-grid">{ex}</div>
-</section>
-<section class="d-sec">
-  <h2>Facts</h2><p class="sub">The short version.</p>
-  <dl class="facts">{facts}</dl>
-</section>
-<section class="d-sec">
-  <h2>More Like This</h2><p class="sub">From the same lab, same guarantees.</p>
-  <div class="like-row">{likes}</div>
+<section class="d-rel">
+  <h2>Elsewhere in the lab</h2>
+  <div class="rel-list">{rel}</div>
 </section>
 {FOOT}
 </body>

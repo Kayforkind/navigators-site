@@ -3,92 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>design-health-action — NavigatorLabs</title>
+<title>design-health-action &mdash; NavigatorLabs</title>
 <meta name="description" content="Eighteen deterministic design-quality checks as a GitHub Action. It fails your build when the palette drifts, motion support is missing, or content is fabricated — no LLM, no API key, seconds per run.">
 <link rel="stylesheet" href="/apps/style.css">
 </head>
 <body>
-<div class="backbar"><a class="back" href="/">‹ All apps</a></div>
+<div class="backbar"><a class="back" href="/">&lsaquo; All apps</a></div>
 <section class="d-hero">
   <div class="slide-art" style="background:linear-gradient(120deg,#0284c7,#6366f1);"></div>
+  <div class="d-glyph l" aria-hidden="true">D</div>
   <div class="d-shade"></div>
   <div class="d-body">
-    <div class="kicker"><span class="n">N</span><span class="tag">Labs original · The CI gate</span></div>
+    <div class="kicker"><span class="n">N</span><span class="tag">ORIGINAL &middot; The CI gate</span></div>
     <h1 class="d-title">design-health-action</h1>
-    <div class="d-meta"><span class="m"><b>ver</b> · v1.0.1</span>
-<span class="m"><b>star</b> · 18 checks</span>
-<span class="m"><b>lic</b> · MIT</span>
-<span class="m"><b>plat</b> · GitHub Action</span></div>
     <p class="d-log">Eighteen deterministic design-quality checks as a GitHub Action. It fails your build when the palette drifts, motion support is missing, or content is fabricated — no LLM, no API key, seconds per run.</p>
     <div class="d-btns">
-      <a class="btn btn-play" href="https://github.com/Kayforkind/design-health-action"><span class="tri">▶</span> View on GitHub</a>
-      <a class="btn btn-more" href="https://github.com/Kayforkind/design-health-action">GitHub ↗</a>
-      
+      <a class="btn btn-play" href="https://github.com/Kayforkind/design-health-action"><span class="tri">&rtrif;</span> View on GitHub</a>
+      <a class="btn btn-more" href="https://github.com/Kayforkind/design-health-action">GitHub &nearr;</a>
     </div>
+    
+    <div class="specbar"><span class="spec"><b>Version</b>v1.0.1</span><span class="spec"><b>License</b>MIT</span><span class="spec"><b>Platform</b>GitHub Action</span><span class="spec"><b>Notable</b>18 checks</span></div>
   </div>
 </section>
-<section class="d-sec">
-  <h2>Examples</h2><p class="sub">Real things design-health-action does — drawn from the docs, the demos and the repos.</p>
-  <div class="ex-grid"><div class="ex"><div class="k">EXAMPLE 1</div><h3>Off-palette accent fails the build</h3><p>More than five non-neutral colors, or an accent outside the palette — blocked.</p></div>
-<div class="ex"><div class="k">EXAMPLE 2</div><h3>Motion support is mandatory</h3><p>Missing prefers-reduced-motion or focus-visible styles get flagged before merge.</p></div>
-<div class="ex"><div class="k">EXAMPLE 3</div><h3>Fabricated content caught</h3><p>Placeholder labels and invented copy are detected as content failures.</p></div>
-<div class="ex"><div class="k">EXAMPLE 4</div><h3>verdict: CLEAN</h3><p>Each run posts a summary table — verdict, failures, warnings — to the workflow.</p></div></div>
+<section class="d-stories">
+<article class="story"><div class="s-num" aria-hidden="true">01</div><div class="s-main"><div class="s-kicker" style="color:#0284c7">The gate</div><h3>Off-palette accent fails the build</h3><p>More than five non-neutral colors, or an accent outside the palette — blocked.</p><div class="s-tags"><span class="tag">18 checks: Typography, Palette, Motion, Content, Structure, Performance</span></div></div></article>
+<article class="story flip"><div class="s-num" aria-hidden="true">02</div><div class="s-main"><div class="s-kicker" style="color:#0284c7">The gate</div><h3>Motion support is mandatory</h3><p>Missing prefers-reduced-motion or focus-visible styles get flagged before merge.</p></div></article>
+<article class="story"><div class="s-num" aria-hidden="true">03</div><div class="s-main"><div class="s-kicker" style="color:#0284c7">The gate</div><h3>Fabricated content caught</h3><p>Placeholder labels and invented copy are detected as content failures.</p></div></article>
+<article class="story flip"><div class="s-num" aria-hidden="true">04</div><div class="s-main"><div class="s-kicker" style="color:#0284c7">Deterministic</div><h3>verdict: CLEAN</h3><p>Each run posts a summary table — verdict, failures, warnings — to the workflow.</p><div class="s-tags"><span class="tag">No model, no network, no API key</span><span class="tag">verdict / failures / warnings / summary outputs</span></div></div></article>
+<div class="also"><span class="also-k">Also in the box</span><div class="s-tags"><span class="tag ghost">fail-on-warnings and strict modes for tight gates</span><span class="tag ghost">The CI-quality-gate half of reimagine-it</span></div></div>
 </section>
-<section class="d-sec">
-  <h2>Details</h2><p class="sub">What ships with it.</p>
-  <ul class="feat"><li>18 checks across Typography, Palette, Motion, Content, Structure, Performance</li>
-<li>Deterministic: no model, no network, no API key</li>
-<li>verdict / failures / warnings / summary outputs</li>
-<li>fail-on-warnings and strict modes for tight gates</li>
-<li>The CI-quality-gate half of reimagine-it</li></ul>
-</section>
-<section class="d-sec">
-  <h2>More Like This</h2><p class="sub">From the same lab, same guarantees.</p>
-  <div class="like-row">
-<article class="card">
-  <a class="card-main" href="/apps/reimagine-it/" aria-label="reimagine-it details">
-    <div class="card-art" style="background:linear-gradient(135deg,#7c3aed,#db2777);">
-      <span class="card-badge">FLAGSHIP</span>
-      <span class="glyph">R</span>
-      <span class="gname">reimagine-it</span>
-    </div>
-    <div class="card-info"><h3>reimagine-it</h3><p>The design engine that refuses to invent facts. Point it at any HTML page and it rebuilds the design from the page's own nouns, dates, numbers and colors — seventeen directions, zero dependencies, fully offline.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://navigatorslab.com/reimagine/">▶ Open</a>
-    <a class="mini-btn" href="/apps/reimagine-it/">ⓘ Details</a>
-  </div>
-</article>
-
-<article class="card">
-  <a class="card-main" href="/apps/liecatchers/" aria-label="liecatchers details">
-    <div class="card-art" style="background:linear-gradient(155deg,#3f3f46,#b91c1c);">
-      <span class="card-badge">ORIGINAL</span>
-      <span class="glyph">L</span>
-      <span class="gname">liecatchers</span>
-    </div>
-    <div class="card-info"><h3>liecatchers</h3><p>Your agent said “done.” Prove it. Ten sensors interrogate the workspace after every agent run — and hand you a signed RECEIPT.json you can paste straight into the next turn.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://github.com/Kayforkind/liecatchers">▶ Open</a>
-    <a class="mini-btn" href="/apps/liecatchers/">ⓘ Details</a>
-  </div>
-</article>
-
-<article class="card">
-  <a class="card-main" href="/apps/integration-rot/" aria-label="integration-rot details">
-    <div class="card-art" style="background:linear-gradient(115deg,#f59e0b,#ef4444);">
-      <span class="card-badge">NEW</span>
-      <span class="glyph">I</span>
-      <span class="gname">integration-rot</span>
-    </div>
-    <div class="card-info"><h3>integration-rot</h3><p>Dependencies rot silently. This autopilot watches yours: it finds every use of a dying API, drafts the migration, and proves the fix with generated contract tests before anything is kept.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://navigatorslab.com/Integrationrot">▶ Open</a>
-    <a class="mini-btn" href="/apps/integration-rot/">ⓘ Details</a>
-  </div>
-</article></div>
+<section class="d-rel">
+  <h2>Elsewhere in the lab</h2>
+  <div class="rel-list"><a class="rel-row" href="/apps/reimagine-it/"><span class="rel-glyph" style="background:linear-gradient(135deg,#7c3aed,#db2777)">R</span><span class="rel-main"><b>reimagine-it</b><i>Rebuilds any web page's design from its own content</i></span><span class="rel-go">&rarr;</span></a>
+<a class="rel-row" href="/apps/liecatchers/"><span class="rel-glyph" style="background:linear-gradient(155deg,#3f3f46,#b91c1c)">L</span><span class="rel-main"><b>liecatchers</b><i>Proves your agent actually did the work</i></span><span class="rel-go">&rarr;</span></a>
+<a class="rel-row" href="/apps/integration-rot/"><span class="rel-glyph" style="background:linear-gradient(115deg,#f59e0b,#ef4444)">I</span><span class="rel-main"><b>integration-rot</b><i>Autopilot that migrates your dying API calls</i></span><span class="rel-go">&rarr;</span></a></div>
 </section>
 
 <footer>

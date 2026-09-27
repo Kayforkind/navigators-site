@@ -3,92 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>liecatchers — NavigatorLabs</title>
+<title>liecatchers &mdash; NavigatorLabs</title>
 <meta name="description" content="Your agent said “done.” Prove it. Ten sensors interrogate the workspace after every agent run — and hand you a signed RECEIPT.json you can paste straight into the next turn.">
 <link rel="stylesheet" href="/apps/style.css">
 </head>
 <body>
-<div class="backbar"><a class="back" href="/">‹ All apps</a></div>
+<div class="backbar"><a class="back" href="/">&lsaquo; All apps</a></div>
 <section class="d-hero">
   <div class="slide-art" style="background:linear-gradient(155deg,#3f3f46,#b91c1c);"></div>
+  <div class="d-glyph r" aria-hidden="true">L</div>
   <div class="d-shade"></div>
   <div class="d-body">
-    <div class="kicker"><span class="n">N</span><span class="tag">Labs original · Trust, verified</span></div>
+    <div class="kicker"><span class="n">N</span><span class="tag">ORIGINAL &middot; Trust, verified</span></div>
     <h1 class="d-title">liecatchers</h1>
-    <div class="d-meta"><span class="m"><b>plat</b> · CLI</span>
-<span class="m"><b>star</b> · 10 sensors</span>
-<span class="m"><b>lic</b> · MIT</span>
-<span class="m"><b>ver</b> · Windows-first</span></div>
     <p class="d-log">Your agent said “done.” Prove it. Ten sensors interrogate the workspace after every agent run — and hand you a signed RECEIPT.json you can paste straight into the next turn.</p>
     <div class="d-btns">
-      <a class="btn btn-play" href="https://github.com/Kayforkind/liecatchers"><span class="tri">▶</span> View on GitHub</a>
-      <a class="btn btn-more" href="https://github.com/Kayforkind/liecatchers">GitHub ↗</a>
-      
+      <a class="btn btn-play" href="https://github.com/Kayforkind/liecatchers"><span class="tri">&rtrif;</span> View on GitHub</a>
+      <a class="btn btn-more" href="https://github.com/Kayforkind/liecatchers">GitHub &nearr;</a>
     </div>
+    
+    <div class="specbar"><span class="spec"><b>Version</b>Windows-first</span><span class="spec"><b>License</b>MIT</span><span class="spec"><b>Platform</b>CLI</span><span class="spec"><b>Notable</b>10 sensors</span></div>
   </div>
 </section>
-<section class="d-sec">
-  <h2>Examples</h2><p class="sub">Real things liecatchers does — drawn from the docs, the demos and the repos.</p>
-  <div class="ex-grid"><div class="ex"><div class="k">EXAMPLE 1</div><h3>The tests never ran</h3><p>The agent printed “Done”; the sensor shows no test process ever executed. Exit code 1.</p></div>
-<div class="ex"><div class="k">EXAMPLE 2</div><h3>Invented paths in the PR</h3><p>The PR references files that are not in the git diff — caught and listed.</p></div>
-<div class="ex"><div class="k">EXAMPLE 3</div><h3>Green npm, missing binaries</h3><p>Install looks fine but native modules are absent. The sensor knows.</p></div>
-<div class="ex"><div class="k">EXAMPLE 4</div><h3>RECEIPT.json</h3><p>One signed machine-readable receipt: paste it into the next agent turn and continue honestly.</p></div></div>
+<section class="d-stories">
+<article class="story"><div class="s-num" aria-hidden="true">01</div><div class="s-main"><div class="s-kicker" style="color:#3f3f46">The sensors</div><h3>The tests never ran</h3><p>The agent printed “Done”; the sensor shows no test process ever executed. Exit code 1.</p><div class="s-tags"><span class="tag">10 sensors: commands, git diff, lockfiles, native modules, handoffs</span></div></div></article>
+<article class="story flip"><div class="s-num" aria-hidden="true">02</div><div class="s-main"><div class="s-kicker" style="color:#3f3f46">The sensors</div><h3>Invented paths in the PR</h3><p>The PR references files that are not in the git diff — caught and listed.</p></div></article>
+<article class="story"><div class="s-num" aria-hidden="true">03</div><div class="s-main"><div class="s-kicker" style="color:#3f3f46">The sensors</div><h3>Green npm, missing binaries</h3><p>Install looks fine but native modules are absent. The sensor knows.</p><div class="s-tags"><span class="tag">Catches unrun tests, invented paths, missing binaries</span></div></div></article>
+<article class="story flip"><div class="s-num" aria-hidden="true">04</div><div class="s-main"><div class="s-kicker" style="color:#3f3f46">The receipt</div><h3>RECEIPT.json</h3><p>One signed machine-readable receipt: paste it into the next agent turn and continue honestly.</p><div class="s-tags"><span class="tag">Signed RECEIPT.json — the one source of truth</span></div></div></article>
+<div class="also"><span class="also-k">Also in the box</span><div class="s-tags"><span class="tag ghost">30-second fail-demo proves the detection works</span><span class="tag ghost">Cursor stop-hook runs it automatically</span><span class="tag ghost">Zero API keys, Windows-first</span></div></div>
 </section>
-<section class="d-sec">
-  <h2>Details</h2><p class="sub">What ships with it.</p>
-  <ul class="feat"><li>10 sensors: commands, git diff, lockfiles, native modules, handoffs</li>
-<li>Signed RECEIPT.json — the one source of truth</li>
-<li>30-second fail-demo proves the detection works</li>
-<li>Cursor stop-hook runs it automatically</li>
-<li>Zero API keys, Windows-first</li></ul>
-</section>
-<section class="d-sec">
-  <h2>More Like This</h2><p class="sub">From the same lab, same guarantees.</p>
-  <div class="like-row">
-<article class="card">
-  <a class="card-main" href="/apps/integration-rot/" aria-label="integration-rot details">
-    <div class="card-art" style="background:linear-gradient(115deg,#f59e0b,#ef4444);">
-      <span class="card-badge">NEW</span>
-      <span class="glyph">I</span>
-      <span class="gname">integration-rot</span>
-    </div>
-    <div class="card-info"><h3>integration-rot</h3><p>Dependencies rot silently. This autopilot watches yours: it finds every use of a dying API, drafts the migration, and proves the fix with generated contract tests before anything is kept.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://navigatorslab.com/Integrationrot">▶ Open</a>
-    <a class="mini-btn" href="/apps/integration-rot/">ⓘ Details</a>
-  </div>
-</article>
-
-<article class="card">
-  <a class="card-main" href="/apps/book-guide-mcp/" aria-label="book-guide-mcp details">
-    <div class="card-art" style="background:linear-gradient(140deg,#059669,#a3e635);">
-      <span class="card-badge">ORIGINAL</span>
-      <span class="glyph">B</span>
-      <span class="gname">book-guide-mcp</span>
-    </div>
-    <div class="card-info"><h3>book-guide-mcp</h3><p>Turn the books you trust into skills your coding agent can call. Playbooks, frameworks and Socratic tutors — every claim cited with a locator, everything running locally.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://github.com/Kayforkind/book-guide-mcp">▶ Open</a>
-    <a class="mini-btn" href="/apps/book-guide-mcp/">ⓘ Details</a>
-  </div>
-</article>
-
-<article class="card">
-  <a class="card-main" href="/apps/design-health-action/" aria-label="design-health-action details">
-    <div class="card-art" style="background:linear-gradient(120deg,#0284c7,#6366f1);">
-      <span class="card-badge">ORIGINAL</span>
-      <span class="glyph">D</span>
-      <span class="gname">design-health-action</span>
-    </div>
-    <div class="card-info"><h3>design-health-action</h3><p>Eighteen deterministic design-quality checks as a GitHub Action. It fails your build when the palette drifts, motion support is missing, or content is fabricated — no LLM, no API key, seconds per run.</p></div>
-  </a>
-  <div class="card-hover">
-    <a class="mini-btn solid" href="https://github.com/Kayforkind/design-health-action">▶ Open</a>
-    <a class="mini-btn" href="/apps/design-health-action/">ⓘ Details</a>
-  </div>
-</article></div>
+<section class="d-rel">
+  <h2>Elsewhere in the lab</h2>
+  <div class="rel-list"><a class="rel-row" href="/apps/integration-rot/"><span class="rel-glyph" style="background:linear-gradient(115deg,#f59e0b,#ef4444)">I</span><span class="rel-main"><b>integration-rot</b><i>Autopilot that migrates your dying API calls</i></span><span class="rel-go">&rarr;</span></a>
+<a class="rel-row" href="/apps/book-guide-mcp/"><span class="rel-glyph" style="background:linear-gradient(140deg,#059669,#a3e635)">B</span><span class="rel-main"><b>book-guide-mcp</b><i>Your trusted books, as agent skills</i></span><span class="rel-go">&rarr;</span></a>
+<a class="rel-row" href="/apps/design-health-action/"><span class="rel-glyph" style="background:linear-gradient(120deg,#0284c7,#6366f1)">D</span><span class="rel-main"><b>design-health-action</b><i>A design-quality gate for CI</i></span><span class="rel-go">&rarr;</span></a></div>
 </section>
 
 <footer>
