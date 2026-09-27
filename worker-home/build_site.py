@@ -562,6 +562,22 @@ var HEADERS_CSS = {
   "content-type": "text/css; charset=utf-8",
   "cache-control": "public, max-age=3600"
 };
+var HEADERS_SW = {
+  "content-type": "text/javascript; charset=utf-8",
+  "x-served-by": "navigatorslab-home",
+  "cache-control": "no-store"
+};
+// Kill switch for the legacy "NavigatorsLab Tools" service worker (scope /)
+// that used to serve the SPA homepage. Any browser still running it fetches
+// this script on its update check, installs it, and on activate it unregisters
+// itself, wipes the stale caches, and reloads controlled pages to the new site.
+var SW_KILL = "self.addEventListener('install',function(e){self.skipWaiting()});"
+  + "self.addEventListener('activate',function(e){e.waitUntil((async function(){"
+  + "try{var k=await caches.keys();await Promise.all(k.map(function(x){return caches.delete(x)}))}catch(e){}"
+  + "try{await self.registration.unregister()}catch(e){}"
+  + "try{var cs=await self.clients.matchAll({includeUncontrolled:true});"
+  + "for(var i=0;i<cs.length;i++){try{cs[i].navigate(cs[i].url)}catch(e){}}}catch(e){}"
+  + "})())});";
 
 var PAGES = __PAGES__;
 var CSS = __CSS__;
@@ -572,6 +588,7 @@ function handle(req) {
   if (p === "/apps/__diag__") { var hd = {}; req.headers.forEach(function (v, k) { hd[k] = v; }); return new Response(JSON.stringify({ worker: "navigatorslab-home", url: url.toString(), host: url.host, ray: hd["cf-ray"] || null, ip: hd["cf-connecting-ip"] || null, country: hd["cf-ipcountry"] || null }), { status: 200, headers: { "content-type": "application/json", "x-served-by": "navigatorslab-home", "cache-control": "no-store" } }); }
   if (p === "/") return new Response(PAGES.home, { status: 200, headers: HEADERS_HTML });
   if (p === "/apps/style.css") return new Response(CSS, { status: 200, headers: HEADERS_CSS });
+  if (p === "/sw.js") return new Response(SW_KILL, { status: 200, headers: HEADERS_SW });
   var m = p.match(/^\\/apps\\/([a-z0-9-]+)\\/?$/);
   if (m && PAGES[m[1]]) return new Response(PAGES[m[1]], { status: 200, headers: HEADERS_HTML });
   if (p === "/apps" || p === "/apps/") return Response.redirect(url.origin + "/", 302);

@@ -25,7 +25,7 @@ ACCOUNT_ID = "56faf9a57ad29af2d943fdedfb5ecda9"
 ZONE_ID = "ef65f42da03bceb67d4526c5a297f4e3"
 SCRIPT_NAME = os.environ.get("NAV_HOME_WORKER", "navigatorslab-home")
 API = "https://api.cloudflare.com/client/v4"
-ROUTES = ["navigatorslab.com/", "navigatorslab.com/apps*"]
+ROUTES = ["navigatorslab.com/", "navigatorslab.com/apps*", "navigatorslab.com/sw.js"]
 SKIP_ROUTES = os.environ.get("NAV_HOME_SKIP_ROUTES") == "1"
 
 
