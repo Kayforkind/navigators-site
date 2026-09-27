@@ -547,6 +547,7 @@ addEventListener("fetch", function (event) { event.respondWith(handle(event.requ
 
 var HEADERS_HTML = {
   "content-type": "text/html; charset=utf-8",
+  "x-served-by": "navigatorslab-home",
   "content-security-policy": "default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self' data:; worker-src 'self' blob:; child-src 'self' blob:; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
   "x-content-type-options": "nosniff",
   "x-frame-options": "DENY",
