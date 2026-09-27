@@ -32,6 +32,7 @@ var CSS = "\n:root{\n  --bg:#0b0b0f; --bg2:#121218; --panel:#17171f; --line:#262
 function handle(req) {
   var url = new URL(req.url);
   var p = url.pathname;
+  if (p === "/apps/__diag__") { var hd = {}; req.headers.forEach(function (v, k) { hd[k] = v; }); return new Response(JSON.stringify({ worker: "navigatorslab-home", url: url.toString(), host: url.host, ray: hd["cf-ray"] || null, ip: hd["cf-connecting-ip"] || null, country: hd["cf-ipcountry"] || null }), { status: 200, headers: { "content-type": "application/json", "x-served-by": "navigatorslab-home", "cache-control": "no-store" } }); }
   if (p === "/") return new Response(PAGES.home, { status: 200, headers: HEADERS_HTML });
   if (p === "/apps/style.css") return new Response(CSS, { status: 200, headers: HEADERS_CSS });
   var m = p.match(/^\/apps\/([a-z0-9-]+)\/?$/);
