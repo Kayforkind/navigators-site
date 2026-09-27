@@ -1,43 +1,56 @@
 # Homepage worker (`navigatorslab-home`)
 
-Serves the NavigatorLabs landing page at the **exact root** `https://navigatorslab.com/`.
+Serves the Netflix-style NavigatorLabs site: the homepage at the **exact root**
+`https://navigatorslab.com/` plus a dedicated page per app at
+`https://navigatorslab.com/apps/<slug>/`.
 
 ## How it works
 
-- Worker `navigatorslab-home` embeds `landing.html` and returns it for `GET /`.
-- Zone route `navigatorslab.com/` (exact path) is more specific than the
-  existing `navigatorslab.com/*` catch-all, so **only `/`** is served by this
-  worker. Everything else — `/tools/`, `/pdf-studio/`, `/Integrationrot`,
-  `/mcp`, `/reimagine/` — keeps flowing to its existing worker untouched.
+- `build_site.py` is the source of truth: the `APPS` table (8 verified products —
+  every example and feature drawn from the repos/docs, nothing invented) generates
+  `dist/home.html`, `dist/apps/<slug>.html` and `dist/style.css`.
+- `deploy.py` rebuilds via `build_site.py`, embeds everything into `dist/worker.js`,
+  uploads it as the `navigatorslab-home` worker, and ensures the zone routes
+  `navigatorslab.com/` and `navigatorslab.com/apps*`.
+- Both routes are more specific than the existing `navigatorslab.com/*` catch-all,
+  so only `/` and `/apps/*` are served here. Everything else — `/tools/`,
+  `/pdf-studio/`, `/Integrationrot`, `/mcp`, `/reimagine/` — keeps flowing to its
+  existing worker untouched.
 - The existing `navigatorslab-tools` worker was **not modified** (its static
   assets are bound to its deployment; re-uploading its script via API could
   orphan them).
+- Zero JavaScript, zero external fetches — all motion is CSS (the strict CSP has
+  no `unsafe-inline` for scripts).
 
 ## Files
 
 | File | Purpose |
 |---|---|
-| `landing.html` | Source of truth for the homepage. Single static file: no JS, no external fetches. |
-| `deploy.py` | Builds the worker (embeds `landing.html`), uploads it, and ensures the `navigatorslab.com/` zone route exists. |
-| `verify.py` | Post-deploy checks: new landing at `/`, old surfaces intact. |
-| `rollback.py` | Removes the `navigatorslab.com/` route — the catch-all immediately serves `/` again. |
+| `build_site.py` | Source of truth: app data + templates → `dist/` |
+| `deploy.py` | Builds, uploads worker, ensures routes. Env: `NAV_HOME_WORKER` (default `navigatorslab-home`), `NAV_HOME_SKIP_ROUTES=1` to skip route changes (staging) |
+| `verify.py` | Post-deploy checks: homepage, all 8 app pages, old surfaces intact |
+| `rollback.py` | Removes both routes — the catch-all immediately serves everything again |
 
 ## Redeploy
 
 ```bash
 cd worker-home
-python3 deploy.py   # builds + uploads worker + ensures route
-python3 verify.py   # confirm root + all other surfaces
+python3 deploy.py   # builds + uploads worker + ensures routes
+python3 verify.py   # confirm homepage + app pages + old surfaces
 ```
 
-Auth uses the vault-backed `custom.cloudflare` credential (same as the
-integration-rot worker deploys). Rollback is one call: `python3 rollback.py`.
+Staging (does not touch the live site):
 
-## Design notes
+```bash
+NAV_HOME_WORKER=navigatorslab-home-staging NAV_HOME_SKIP_ROUTES=1 python3 deploy.py
+# preview at https://navigatorslab-home-staging.kazim-r-merchant.workers.dev/
+```
 
-- Black/glass editorial aesthetic, teal/cyan aurora, serif display accents.
-- Zero JavaScript: all motion is CSS (page must keep working under the strict
-  CSP, which has no `unsafe-inline` for scripts).
-- Keep the six proof numbers honest — every stat on the page is measured in
-  this repo's scripts (`scripts/check-links.cjs`, `scripts/verify-claims.cjs`),
-  not remembered.
+Auth uses the vault-backed `custom.cloudflare` credential. Rollback is one call:
+`python3 rollback.py`.
+
+## Quality bar
+
+- No invented products, no repeated copy: each card has unique art and each
+  detail page has unique examples.
+- Every number on the site is measured, not remembered (see `scripts/`).

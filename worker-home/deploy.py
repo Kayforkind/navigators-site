@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""Build + deploy the navigatorslab-home worker.
+"""Build + deploy the navigatorslab-home worker (Netflix-style site).
 
-Serves the new NavigatorLabs landing page at the exact root path `/`.
-Zone route `navigatorslab.com/` (exact) is more specific than the existing
-`navigatorslab.com/*` catch-all, so everything else keeps flowing to
-navigatorslab-tools untouched. Zero changes to the existing worker.
+Worker serves:  /                 -> homepage
+                /apps/style.css   -> shared stylesheet
+                /apps/<slug>/     -> 8 dedicated app pages
+Zone routes `navigatorslab.com/` and `navigatorslab.com/apps*` point here;
+everything else keeps serving via navigatorslab-tools (untouched).
 """
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -20,43 +23,10 @@ from dynamic_credentials import add_surrogate_to_request, read_json_response  # 
 ROOT = Path(__file__).resolve().parent
 ACCOUNT_ID = "56faf9a57ad29af2d943fdedfb5ecda9"
 ZONE_ID = "ef65f42da03bceb67d4526c5a297f4e3"
-SCRIPT_NAME = "navigatorslab-home"
+SCRIPT_NAME = os.environ.get("NAV_HOME_WORKER", "navigatorslab-home")
 API = "https://api.cloudflare.com/client/v4"
-
-WORKER_TEMPLATE = """/* navigatorslab-home — NavigatorLabs landing page at the exact root `/`.
- * Zone route `navigatorslab.com/` beats the `navigatorslab.com/*` catch-all
- * for the root path only; every other path keeps serving via
- * navigatorslab-tools (tools SPA, pdf-studio, Integrationrot docs, MCP).
- * Single static HTML, zero external fetches, zero JavaScript (CSP has no
- * 'unsafe-inline' for scripts — all animation is CSS).
- */
-addEventListener("fetch", (event) => {
-  event.respondWith(handle(event.request));
-});
-
-const HEADERS = {
-  "content-type": "text/html; charset=utf-8",
-  "content-security-policy": "default-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self' data:; worker-src 'self' blob:; child-src 'self' blob:; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
-  "x-content-type-options": "nosniff",
-  "x-frame-options": "DENY",
-  "referrer-policy": "no-referrer",
-  "cross-origin-opener-policy": "same-origin",
-  "cross-origin-resource-policy": "same-origin",
-  "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
-  "strict-transport-security": "max-age=31536000; includeSubDomains",
-  "cache-control": "public, max-age=600",
-};
-
-async function handle(req) {
-  const url = new URL(req.url);
-  if (url.pathname === "/") {
-    return new Response(HTML, { status: 200, headers: HEADERS });
-  }
-  return new Response("not found", { status: 404, headers: HEADERS });
-}
-
-const HTML = __HTML__;
-"""
+ROUTES = ["navigatorslab.com/", "navigatorslab.com/apps*"]
+SKIP_ROUTES = os.environ.get("NAV_HOME_SKIP_ROUTES") == "1"
 
 
 def api(method: str, path: str, body: bytes | None = None, ctype: str | None = None):
@@ -73,11 +43,10 @@ def api(method: str, path: str, body: bytes | None = None, ctype: str | None = N
 
 
 def build() -> bytes:
-    html = (ROOT / "landing-new.html").read_text(encoding="utf-8")
-    assert "`" not in html and "${" not in html, "HTML not template-literal safe"
-    worker = WORKER_TEMPLATE.replace("__HTML__", "`" + html + "`")
-    assert "__HTML__" not in worker
-    return worker.encode("utf-8")
+    subprocess.run([sys.executable, str(ROOT / "build_site.py")], check=True, cwd=ROOT)
+    script = (ROOT / "dist" / "worker.js").read_bytes()
+    print(f"built worker: {len(script)} bytes")
+    return script
 
 
 def deploy_worker(script: bytes):
@@ -106,29 +75,35 @@ def deploy_worker(script: bytes):
         raise SystemExit(1)
 
 
-def ensure_route():
+def ensure_routes():
     status, result = api("GET", f"/zones/{ZONE_ID}/workers/routes")
-    routes = (result or {}).get("result") or []
-    for r in routes:
-        if r.get("pattern") == "navigatorslab.com/" and r.get("script") == SCRIPT_NAME:
-            print("route already present:", r["id"])
-            return r["id"]
-    status, result = api("POST", f"/zones/{ZONE_ID}/workers/routes",
-                         json.dumps({"pattern": "navigatorslab.com/", "script": SCRIPT_NAME}).encode(),
-                         "application/json")
-    print("route create:", status, "success:", (result or {}).get("success"))
-    if not (result or {}).get("success"):
-        print(json.dumps((result or {}).get("errors"), indent=1)[:1500])
-        raise SystemExit(1)
-    return (result.get("result") or {}).get("id")
+    existing = {(r.get("pattern"), r.get("script")) for r in (result or {}).get("result") or []}
+    for pattern in ROUTES:
+        if (pattern, SCRIPT_NAME) in existing:
+            print("route already present:", pattern)
+            continue
+        status, result = api("POST", f"/zones/{ZONE_ID}/workers/routes",
+                             json.dumps({"pattern": pattern, "script": SCRIPT_NAME}).encode(),
+                             "application/json")
+        print("route create", pattern, ":", status, "success:", (result or {}).get("success"))
+        if not (result or {}).get("success"):
+            print(json.dumps((result or {}).get("errors"), indent=1)[:1500])
+            raise SystemExit(1)
 
 
 def main() -> None:
+    # --target staging deploys to the staging worker and never touches routes.
+    # Anything else deploys to the production worker and ensures its routes.
+    target = "staging" if "--target" in sys.argv and "staging" in sys.argv else "production"
+    global SCRIPT_NAME
+    if target == "staging":
+        SCRIPT_NAME = "navigatorslab-home-staging"
+        os.environ["NAV_HOME_SKIP_ROUTES"] = "1"
+    print(f"target: {target} -> worker {SCRIPT_NAME}")
     script = build()
-    print(f"built worker: {len(script)} bytes")
     deploy_worker(script)
-    rid = ensure_route()
-    print("route id:", rid)
+    if not SKIP_ROUTES and os.environ.get("NAV_HOME_SKIP_ROUTES") != "1":
+        ensure_routes()
 
 
 if __name__ == "__main__":
