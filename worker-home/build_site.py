@@ -39,10 +39,15 @@ APPS = [
     "Ships with a Claude Code / Cursor skill and an MCP server, so coding agents "
     "can drive redesigns themselves."),
   ],
-  features=["17 content-derived design directions", "19-rule deterministic audit (no LLM)",
-            "MCP server + agent skill for Claude Code and Cursor",
-            "Byte-identical regeneration across 168-file corpus in CI",
-            "Zero runtime dependencies, offline, MIT-licensed"],
+  caps=[("Generates",
+         ["17 content-derived design directions",
+          "Rebuilds from the page's own nouns, dates, numbers and colors"]),
+        ("Verifies",
+         ["19-rule deterministic audit — no LLM in the loop",
+          "Byte-identical regeneration across a 168-file corpus in CI"]),
+        ("Plays well with agents",
+         ["MCP server + agent skill for Claude Code and Cursor",
+          "Zero runtime dependencies; works fully offline"])],
   likes=["integration-rot", "design-health-action", "liecatchers"],
  ),
  dict(
@@ -70,9 +75,15 @@ APPS = [
     "A managed version is coming — monitoring, PRs and all. Join the waitlist "
     "from the docs page."),
   ],
-  features=["Deprecation DB covering 76 SDK packages", "Deterministic planner: scan, draft, test, keep-or-revert",
-            "Contract tests generated per fix, run hermetically",
-            "CLI, REST API and MCP server interfaces", "Zero runtime dependencies"],
+  caps=[("Detects",
+         ["Deprecation DB covering 76 SDK packages",
+          "Finds every use of a dying API in your repo"]),
+        ("Repairs",
+         ["Deterministic loop: scan, draft, test, keep-or-revert",
+          "Contract tests generated per fix, run hermetically"]),
+        ("Fits your workflow",
+         ["CLI, REST API and MCP server interfaces",
+          "Zero runtime dependencies"])],
   likes=["liecatchers", "design-health-action", "reimagine-it"],
  ),
  dict(
@@ -95,10 +106,23 @@ APPS = [
    ("Diff two revisions",
     "Compare proposal v2 against v3 and see exactly what changed."),
   ],
-  features=["Edit PDF text in place", "Form filling + e-signature",
-            "On-device OCR for scans", "True redaction (burned, not covered)",
-            "Revision diffing, on-device LLM helpers"],
-  likes=["tools", "reimagine-it", "data-insights"],
+  caps=[("Edit",
+         ["Rewrite the text already inside the PDF — true content-stream edits",
+          "Fill real AcroForms, then flatten them",
+          "Table cells stay independent when you edit"]),
+        ("Protect",
+         ["Redaction that burns content — not covers it",
+          "Sign with the on-page signature pad",
+          "Your file never leaves the device"]),
+        ("Understand",
+         ["On-device OCR turns scans into editable text",
+          "Line-by-line diff of two revisions",
+          "Ask an on-device LLM about the document"]),
+        ("Organize",
+         ["Reorder, rotate, merge and split pages",
+          "Stamp page numbers, watermarks, headers and footers",
+          "Full-text search across the document"])],
+  likes=["tools", "reimagine-it", "liecatchers"],
  ),
  dict(
   slug="tools", name="23 Tools", glyph="T",
@@ -120,11 +144,15 @@ APPS = [
    ("Shrink a folder for the web",
     "Batch images down to size with no uploads and no quality surprises."),
   ],
-  features=["Documents, text, data, images, media and files — plus games",
-            "Deep links with parameters drive any tool from a URL",
-            "MCP endpoint so AI agents can operate every tool",
-            "QR code for every tool — phone handoff in one scan",
-            "Fully offline once loaded; zero telemetry"],
+  caps=[("The collection",
+         ["23 tools, games and projects",
+          "Documents, text, data, images, media and files — plus games"]),
+        ("Made for flow",
+         ["Deep links with parameters drive any tool from a URL",
+          "A QR code for every tool — phone handoff in one scan",
+          "Fully offline once loaded; zero telemetry"]),
+        ("For agents",
+         ["MCP endpoint so AI agents can operate every tool"])],
   likes=["pdf-studio", "book-guide-mcp", "reimagine-it"],
  ),
  dict(
@@ -147,9 +175,16 @@ APPS = [
    ("The Avicenna tutor",
     "Teaches from first principles, step by step, from texts you own."),
   ],
-  features=["L0 Library to L4 Mentor skill packages", "skill_match, skill_search and skill_cite tools",
-            "Socratic and Avicenna mentor modes", "MCP hosts include Cursor, Claude Code, VS Code and Zed",
-            "Local-first; no API keys for the core loop"],
+  caps=[("The library",
+         ["Turn the books you trust into agent skills",
+          "L0 Library to L4 Mentor skill packages",
+          "Playbooks, frameworks, Socratic and Avicenna tutors"]),
+        ("Cited, not invented",
+         ["skill_match, skill_search and skill_cite tools",
+          "Every claim carries a book locator"]),
+        ("Runs anywhere",
+         ["MCP hosts include Cursor, Claude Code, VS Code and Zed",
+          "Local-first; no API keys for the core loop"])],
   likes=["liecatchers", "tools", "design-health-action"],
  ),
  dict(
@@ -172,11 +207,15 @@ APPS = [
    ("verdict: CLEAN",
     "Each run posts a summary table — verdict, failures, warnings — to the workflow."),
   ],
-  features=["18 checks across Typography, Palette, Motion, Content, Structure, Performance",
-            "Deterministic: no model, no network, no API key",
-            "verdict / failures / warnings / summary outputs",
-            "fail-on-warnings and strict modes for tight gates",
-            "The CI-quality-gate half of reimagine-it"],
+  caps=[("The gate",
+         ["18 checks across Typography, Palette, Motion, Content, Structure, Performance",
+          "Fails the build on palette drift, missing motion support, fabricated content"]),
+        ("Deterministic",
+         ["No model, no network, no API key",
+          "verdict / failures / warnings / summary outputs"]),
+        ("Strict when you want it",
+         ["fail-on-warnings and strict modes for tight gates",
+          "The CI-quality-gate half of reimagine-it"])],
   likes=["reimagine-it", "liecatchers", "integration-rot"],
  ),
  dict(
@@ -199,11 +238,16 @@ APPS = [
    ("RECEIPT.json",
     "One signed machine-readable receipt: paste it into the next agent turn and continue honestly."),
   ],
-  features=["10 sensors: commands, git diff, lockfiles, native modules, handoffs",
-            "Signed RECEIPT.json — the one source of truth",
-            "30-second fail-demo proves the detection works",
-            "Cursor stop-hook runs it automatically",
-            "Zero API keys, Windows-first"],
+  caps=[("The sensors",
+         ["10 sensors: commands, git diff, lockfiles, native modules, handoffs",
+          "Catches unrun tests, invented paths, missing binaries"]),
+        ("The receipt",
+         ["Signed RECEIPT.json — the one source of truth",
+          "Paste it into the next agent turn and continue honestly"]),
+        ("In the loop",
+         ["30-second fail-demo proves the detection works",
+          "Cursor stop-hook runs it automatically",
+          "Zero API keys, Windows-first"])],
   likes=["integration-rot", "book-guide-mcp", "design-health-action"],
  ),
  dict(
@@ -226,9 +270,14 @@ APPS = [
    ("The agent CLI",
     "npm run cli -- search robotics — the same intelligence, scriptable."),
   ],
-  features=["/report: daily 5W1H brief", "/weekly: synthesis with themes, risks, experiments",
-            "Topic search across live signals and source history", "/portal: headline river without licensed full text",
-            "JSON APIs + CLI for agents"],
+  caps=[("Briefs",
+         ["/report: daily 5W1H brief",
+          "/weekly: synthesis with themes, risks, experiments"]),
+        ("Research",
+         ["Topic search across live signals and source history",
+          "/portal: headline river without licensed full text"]),
+        ("For agents",
+         ["JSON APIs + CLI for agents"])],
   likes=["tools", "pdf-studio", "book-guide-mcp"],
  ),
 ]
@@ -353,6 +402,13 @@ a{color:inherit;text-decoration:none}
 .feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;list-style:none}
 .feat li{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:13.5px;color:#d7d7de}
 .feat li::before{content:"✓ ";color:var(--brand);font-weight:800}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.cap-group h3{font-size:12px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+.cap-group .feat{grid-template-columns:1fr}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.fact{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.fact dt{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.fact dd{margin:0;font-size:15px;font-weight:600;color:var(--txt)}
 .like-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 
 /* ---------- footer ---------- */
@@ -391,7 +447,7 @@ NAV = """
     <a href="/apps/integration-rot/">Developers</a>
     <a href="https://github.com/Kayforkind">GitHub</a>
   </nav>
-  <div class="nav-right"><span class="pill"><b>8</b> apps · free · local-first</span></div>
+  <div class="nav-right"><span class="pill"><b>7</b> apps · free · local-first</span></div>
 </header>
 <script>/* nav shade on scroll needs JS; static gradient is fine without it */</script>
 """
@@ -457,7 +513,7 @@ def home():
     bill = [BY_SLUG[s] for s in ("reimagine-it", "integration-rot", "pdf-studio")]
     # Every app appears exactly once on the homepage — no repeats, no rankings.
     collection = ["reimagine-it", "integration-rot", "pdf-studio", "tools",
-                  "book-guide-mcp", "design-health-action", "liecatchers", "data-insights"]
+                  "book-guide-mcp", "design-health-action", "liecatchers"]
     grid = "\n".join(card(BY_SLUG[s]) for s in collection)
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -465,7 +521,7 @@ def home():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NavigatorLabs — local-first, private-by-default software</title>
-<meta name="description" content="Eight free, local-first apps: reimagine-it, integration-rot, PDF Studio, 23 private tools and more. No uploads, no accounts, no telemetry.">
+<meta name="description" content="Seven free, local-first apps: reimagine-it, integration-rot, PDF Studio, 23 private tools and more. No uploads, no accounts, no telemetry.">
 <link rel="stylesheet" href="/apps/style.css">
 </head>
 <body>
@@ -477,7 +533,7 @@ def home():
 </section>
 <section class="shelf">
   <h2><span class="nlab">NavigatorLabs</span> Originals</h2>
-  <p class="sub">Eight apps. One standard: free, local-first, no telemetry. Each appears once — pick yours.</p>
+  <p class="sub">Seven apps. One standard: free, local-first, no telemetry. Each appears once — pick yours.</p>
   <div class="grid">{grid}</div>
 </section>
 {FOOT}
@@ -488,9 +544,16 @@ def detail(a):
     ex = "\n".join(
         f'<div class="ex"><div class="k">EXAMPLE {i+1}</div><h3>{t}</h3><p>{d}</p></div>'
         for i, (t, d) in enumerate(a["examples"]))
-    feats = "\n".join(f"<li>{f}</li>" for f in a["features"])
+    caps = "\n".join(
+        f'<div class="cap-group"><h3>{g}</h3><ul class="feat">'
+        + "\n".join(f"<li>{f}</li>" for f in items)
+        + "</ul></div>"
+        for g, items in a["caps"])
     likes = "\n".join(card(BY_SLUG[s]) for s in a["likes"])
-    metas = "\n".join(f'<span class="m"><b>{k}</b> · {v}</span>' for v, k in a["meta"])
+    meta_labels = {"ver": "Version", "lic": "License", "plat": "Platform", "star": "Notable"}
+    facts = "\n".join(
+        f'<div class="fact"><dt>{meta_labels.get(k, k)}</dt><dd>{v}</dd></div>'
+        for v, k in a["meta"])
     waitlist = (f'<a class="btn btn-play" href="{a["waitlist"]}"><span class="tri">✦</span> Join the waitlist</a>'
                 if "waitlist" in a else "")
     return f"""<!DOCTYPE html>
@@ -510,7 +573,6 @@ def detail(a):
   <div class="d-body">
     <div class="kicker"><span class="n">N</span><span class="tag">Labs original · {a['matchline']}</span></div>
     <h1 class="d-title">{a['name']}</h1>
-    <div class="d-meta">{metas}</div>
     <p class="d-log">{a['logline']}</p>
     <div class="d-btns">
       <a class="btn btn-play" href="{a['open'][1]}"><span class="tri">▶</span> {a['open'][0]}</a>
@@ -520,12 +582,16 @@ def detail(a):
   </div>
 </section>
 <section class="d-sec">
+  <h2>Capabilities</h2><p class="sub">What {a['name']} does, grouped by job.</p>
+  <div class="caps">{caps}</div>
+</section>
+<section class="d-sec">
   <h2>Examples</h2><p class="sub">Real things {a['name']} does — drawn from the docs, the demos and the repos.</p>
   <div class="ex-grid">{ex}</div>
 </section>
 <section class="d-sec">
-  <h2>Details</h2><p class="sub">What ships with it.</p>
-  <ul class="feat">{feats}</ul>
+  <h2>Facts</h2><p class="sub">The short version.</p>
+  <dl class="facts">{facts}</dl>
 </section>
 <section class="d-sec">
   <h2>More Like This</h2><p class="sub">From the same lab, same guarantees.</p>
@@ -538,7 +604,7 @@ def detail(a):
 WORKER = """/* navigatorslab-home — Netflix-style NavigatorLabs site.
  * Routes:  /                 -> homepage
  *          /apps/style.css   -> shared stylesheet
- *          /apps/<slug>/     -> dedicated app page (8 apps)
+ *          /apps/<slug>/     -> dedicated app page (7 apps)
  * Zone routes `navigatorslab.com/` and `navigatorslab.com/apps*` both point
  * here; every other path keeps serving via navigatorslab-tools.
  * Zero JavaScript, zero external fetches — all motion is CSS.
