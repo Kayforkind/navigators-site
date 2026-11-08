@@ -101,9 +101,9 @@ function gitOutput(args, cwd) {
 async function api(url) {
   const headers = {
     'user-agent': 'navigators-site-claim-gate',
-    accept: 'application/vnd.github+json',
+    accept: url.includes('api.github.com') ? 'application/vnd.github+json' : 'application/json',
   };
-  if (process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  if (url.includes('api.github.com') && process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   let lastErr;
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
