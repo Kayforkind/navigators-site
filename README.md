@@ -27,3 +27,10 @@ as a lab surface.
 ```bash
 npx reimagine-it audit index.html   # expect: 19 passed, 0 warnings, 0 failures
 ```
+
+## 🎬 Live Scrolltide Library & NotebookLM Video Overview
+
+- **Live Product Library (`16 apps`):** [https://navigatorslab.com/](https://navigatorslab.com/)
+- **NotebookLM Audio & Video Deep Dive (`16:9 MP4`):** [https://navigatorslab.com/tools/videos/notebooklm-overview.mp4](https://navigatorslab.com/tools/videos/notebooklm-overview.mp4)
+- **24-Tool Interactive Video & Output Showcase:** [https://navigatorslab.com/tools/#library](https://navigatorslab.com/tools/#library)
+- **Worker Home Verification Suite (`29/29 checks`):** `python worker-home/verify.py`

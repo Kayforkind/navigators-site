@@ -44,3 +44,9 @@ We send hard, reviewable fixes back to the tools we build on — [simonw/llm](ht
 <p align="center">
   <em>Local-first is a promise. Ours ships with a paper trail.</em>
 </p>
+
+### 🎙️ Video Overview & Concrete Tool Examples
+
+- **NotebookLM Audio & Video Deep Dive (`16:9 MP4`):** [Watch on navigatorslab.com](https://navigatorslab.com/tools/videos/notebooklm-overview.mp4)
+- **Interactive 24-Tool Video & Output Showcase:** [navigatorslab.com/tools/#library](https://navigatorslab.com/tools/#library)
+- **Live 16-App Product Library:** [navigatorslab.com](https://navigatorslab.com/)
