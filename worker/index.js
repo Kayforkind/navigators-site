@@ -101,6 +101,20 @@ export default {
       headers.set(k, v);
     }
 
+    // HTML must not be transformed at the edge. GitHub Pages serves its docs
+    // with a cacheable max-age, so Cloudflare Web Analytics would inject its
+    // beacon into the proxied pages — a third-party request nobody asked for.
+    // Per Cloudflare's docs, "no-transform" in Cache-Control disables that
+    // injection; the hub and PDF Studio workers set the same header.
+    const ct = headers.get("content-type") || "";
+    if (ct.startsWith("text/html")) {
+      const cc = headers.get("cache-control");
+      headers.set(
+        "cache-control",
+        cc && /no-transform/i.test(cc) ? cc : "public, max-age=600, no-transform",
+      );
+    }
+
     return new Response(upstream.body, {
       status: upstream.status,
       headers,

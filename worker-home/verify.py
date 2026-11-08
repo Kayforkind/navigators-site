@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Post-deploy verification for the navigatorslab-home Netflix-style site."""
+"""Post-deploy verification for the navigatorslab-home Product Library site."""
 import http.client
 import os
 import sys
@@ -8,15 +8,29 @@ import urllib.error
 import urllib.request
 
 BASE = os.environ.get("NAV_HOME_BASE", "https://navigatorslab.com")
-SLUGS = ["reimagine-it", "integration-rot", "pdf-studio", "tools",
-         "book-guide-mcp", "design-health-action", "liecatchers", "data-insights"]
+SLUGS = [
+    ("reimagine-it", "Kayforkind/reimagine-it"),
+    ("integration-rot", "Kayforkind/integration-rot"),
+    ("pdf-studio", "Kayforkind/NavigatorsLab-PDF-Studio"),
+    ("tools", "Kayforkind/NavigatorsLab-Tools"),
+    ("redact-lint", "Kayforkind/redact-lint"),
+    ("liecatchers", "Kayforkind/liecatchers"),
+    ("book-guide-mcp", "Kayforkind/book-guide-mcp"),
+    ("design-health-action", "Kayforkind/design-health-action"),
+    ("api-watch", "Kayforkind/api-watch"),
+    ("pdf-a11y-check", "Kayforkind/pdf-a11y-check"),
+    ("design-gate", "Kayforkind/design-gate"),
+    ("skills-registry", "Kayforkind/skills-registry"),
+    ("share-safe", "Kayforkind/share-safe"),
+    ("privacy-plugin", "Kayforkind/privacy-plugin"),
+    ("agent-receipts", "Kayforkind/agent-receipts"),
+    ("health-claims", "Kayforkind/health-claims"),
+]
 
-HOME_TITLE = "<title>NavigatorLabs — local-first, private-by-default software</title>"
+HOME_TITLE = "<title>NavigatorLabs Product library</title>"
 
 
 def fetch(url, retries=2):
-    """Return (status_str, headers_dict, body). Handles HTTPError bodies and
-    retries once on IncompleteRead (partial responses)."""
     req = urllib.request.Request(url, headers={"User-Agent": "navhome-verify/1.0"})
     for attempt in range(retries + 1):
         try:
@@ -37,7 +51,7 @@ def fetch(url, retries=2):
             return "PARTIAL", {}, body
         except (http.client.RemoteDisconnected, urllib.error.URLError) as e:
             if attempt < retries:
-                time.sleep(3)
+                time.sleep(2)
                 continue
             return f"ERROR {type(e).__name__}: {e}", {}, ""
         except Exception as e:
@@ -54,45 +68,35 @@ def home_worker(h):
 
 
 CHECKS = [
-    ("homepage title", f"{BASE}/",
-     lambda b, h: HOME_TITLE in b),
-    ("homepage served by home worker", f"{BASE}/",
-     lambda b, h: home_worker(h)),
-    ("homepage Originals grid + billboard", f"{BASE}/",
-     lambda b, h: "Originals</h2>" in b and "billboard" in b),
-    ("homepage links all 8 apps", f"{BASE}/",
-     lambda b, h: all(f"/apps/{s}/" in b for s in SLUGS)),
-    ("homepage has no ranking copy", f"{BASE}/",
-     lambda b, h: "Top 10" not in b and "For Builders" not in b),
-    ("stylesheet serves", f"{BASE}/apps/style.css",
-     lambda b, h: ".billboard" in b and ".card" in b),
-    ("sw.js kill-switch serves", f"{BASE}/sw.js",
-     lambda b, h: home_worker(h) and "registration.unregister()" in b
-                  and "javascript" in lh(h).get("content-type", "")),
+    ("homepage title", f"{BASE}/", lambda b, h: HOME_TITLE in b),
+    ("homepage served by home worker", f"{BASE}/", lambda b, h: home_worker(h)),
+    ("homepage shows 16 apps count", f"{BASE}/", lambda b, h: "16 apps" in b),
+    ("homepage links all 16 apps", f"{BASE}/", lambda b, h: all(f"/apps/{s}/" in b for s, _ in SLUGS)),
+    ("stylesheet serves", f"{BASE}/apps/style.css", lambda b, h: ".grid" in b and ".card" in b),
+    (
+        "sw.js kill-switch serves",
+        f"{BASE}/sw.js",
+        lambda b, h: home_worker(h) and "registration.unregister()" in b and "javascript" in lh(h).get("content-type", ""),
+    ),
 ] + [
-    (f"app page {s}", f"{BASE}/apps/{s}/",
-     lambda b, h, s=s: "<title>" in b and "Examples" in b
-                       and "More Like This" in b and home_worker(h))
-    for s in SLUGS
+    (
+        f"app page {s} -> {repo}",
+        f"{BASE}/apps/{s}/",
+        lambda b, h, _s=None, repo=repo: "<title>" in b and f"https://github.com/{repo}" in b and "Important caveat" in b and home_worker(h),
+    )
+    for s, repo in SLUGS
 ] + [
-    ("unknown app 404s", f"{BASE}/apps/nope/",
-     lambda b, h, s: s.startswith("HTTP 404")),
-    ("tools hub intact (not home worker)", "https://navigatorslab.com/tools/",
-     lambda b, h: "NavigatorsLab Tools" in b
-                  and lh(h).get("x-served-by", "") != "navigatorslab-home"),
-    ("tools sw.js intact (Workbox)", "https://navigatorslab.com/tools/sw.js",
-     lambda b, h: "workbox" in b.lower() or "precache" in b.lower()),
-    ("Integrationrot docs intact", "https://navigatorslab.com/Integrationrot",
-     lambda b, h: "integration-rot" in b.lower() or "waitlist" in b.lower()),
-    ("pdf-studio route intact", "https://navigatorslab.com/pdf-studio/",
-     lambda b, h, s: s.startswith("HTTP 200")),
-    ("reimagine route intact", "https://navigatorslab.com/reimagine/",
-     lambda b, h, s: s.startswith("HTTP 200")),
-    ("waitlist API intact", "https://navigatorslab.com/Integrationrot/waitlist/count",
-     lambda b, h: '"count"' in b),
-    ("mcp untouched (no route; still tools-worker 404)", "https://navigatorslab.com/mcp",
-     lambda b, h, s: s.startswith("HTTP 404")
-                     and lh(h).get("x-served-by", "") != "navigatorslab-home"),
+    ("unknown app 404s", f"{BASE}/apps/nope/", lambda b, h, s: s.startswith("HTTP 404")),
+    (
+        "tools hub intact (not home worker)",
+        "https://navigatorslab.com/tools/",
+        lambda b, h: "NavigatorsLab Tools" in b and lh(h).get("x-served-by", "") != "navigatorslab-home",
+    ),
+    ("tools sw.js intact (Workbox)", "https://navigatorslab.com/tools/sw.js", lambda b, h: "workbox" in b.lower() or "precache" in b.lower()),
+    ("Integrationrot docs intact", "https://navigatorslab.com/Integrationrot", lambda b, h: "integration-rot" in b.lower() or "waitlist" in b.lower()),
+    ("pdf-studio route intact", "https://navigatorslab.com/pdf-studio/", lambda b, h, s: s.startswith("HTTP 200")),
+    ("reimagine route intact", "https://navigatorslab.com/reimagine/", lambda b, h, s: s.startswith("HTTP 200")),
+    ("waitlist API intact", "https://navigatorslab.com/Integrationrot/waitlist/count", lambda b, h: '"count"' in b),
 ]
 
 ok = True
@@ -101,12 +105,11 @@ for name, url, pred in CHECKS:
     try:
         passed = bool(pred(body, headers, status))
     except TypeError:
-        # legacy 2-arg predicates
         passed = bool(pred(body, headers))
     except Exception as e:
         passed = False
         print(f"  (predicate error: {e})")
     ok = ok and passed
     print(("PASS " if passed else "FAIL ") + name + f"  [{url} -> {status}]")
-    time.sleep(1)
+    time.sleep(0.25)
 sys.exit(0 if ok else 1)
