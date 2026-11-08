@@ -1,8 +1,8 @@
 # NavigatorLabs — nominations & submissions kit
 
 Paste-ready copy for the directories, newsletters, and communities that accept
-listings. Every number is verified as of **v2.15.0 (Sep 2026)**: 185 GitHub
-stars, 25 releases, OpenSSF Scorecard 7.7, 82 npm downloads/week, 160 tests,
+listings. Every number is verified as of **v2.15.0 (Sep 2026)**: 213 GitHub
+stars, 25 releases, OpenSSF Scorecard 7.0, 30 npm downloads/week, 160 tests,
 and 96.8% mean class-set difference between the 17 design directions. Update numbers before submitting if time has passed.
 
 Already merged (do not resubmit): VoltAgent/awesome-agent-skills (#966, #988),
@@ -37,7 +37,7 @@ homepage before pitching.)
 
 ## 2. dev.to article (publish-ready)
 
-**Title:** `I built a design engine that refuses to invent facts (185★, zero dependencies)` — now published as the full article in `reimagine-it/ANNOUNCEMENT.md`, title: *"Your content is the design brief: inside reimagine-it, the design engine that refuses to invent facts"*
+**Title:** `I built a design engine that refuses to invent facts (213★, zero dependencies)` — now published as the full article in `reimagine-it/ANNOUNCEMENT.md`, title: *"Your content is the design brief: inside reimagine-it, the design engine that refuses to invent facts"*
 
 **Tags:** `webdev`, `css`, `ai`, `opensource`
 
@@ -54,7 +54,7 @@ homepage before pitching.)
 >
 > This post walks through how Content-Derived Design works, why "never
 > invent facts" is a harder engineering constraint than it sounds, and what
-> shipping with SLSA provenance + an OpenSSF Scorecard of 7.7 looks like
+> shipping with SLSA provenance + an OpenSSF Scorecard of 7.0 looks like
 > for a solo-maintained open-source project.
 
 **Cover image:** `docs/og.png` from the reimagine-it repo (14-source wall).
@@ -74,7 +74,7 @@ homepage before pitching.)
 > offline, zero runtime dependencies, no API keys.
 >
 > Try it without installing: https://kayforkind.github.io/reimagine-it/#playground
-> Repo: https://github.com/Kayforkind/reimagine-it (MIT, OpenSSF Scorecard 7.7,
+> Repo: https://github.com/Kayforkind/reimagine-it (MIT, OpenSSF Scorecard 7.0,
 > npm releases with SLSA provenance)
 >
 > The honest limits: HTML in, HTML out (no PDF/PPTX/DOCX), and the audit
@@ -90,7 +90,7 @@ homepage before pitching.)
 
 **r/webdev** — title: `I built an offline design engine that never invents facts — it redesigns HTML using only the content already in the file (MIT, no API keys)`
 
-**r/SideProject** — title: `I spent 3 months building a deterministic alternative to AI mood-board redesigners. 185★, zero dependencies, zero network calls.`
+**r/SideProject** — title: `I spent 3 months building a deterministic alternative to AI mood-board redesigners. 213★, zero dependencies, zero network calls.`
 
 **Body (both subs, ~150 words):**
 
