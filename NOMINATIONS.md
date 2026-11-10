@@ -2,7 +2,7 @@
 
 Paste-ready copy for the directories, newsletters, and communities that accept
 listings. Every number is verified as of **v2.15.0 (Sep 2026)**: 213 GitHub
-stars, 25 releases, OpenSSF Scorecard 7.7, 31 npm downloads/week, 160 tests,
+stars, 25 releases, OpenSSF Scorecard 7.7, 35 npm downloads/week, 160 tests,
 and 96.8% mean class-set difference between the 17 design directions. Update numbers before submitting if time has passed.
 
 Already merged (do not resubmit): VoltAgent/awesome-agent-skills (#966, #988),
